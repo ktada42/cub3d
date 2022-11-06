@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 21:33:25 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/06 20:03:27 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/06 20:44:10 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,13 @@
 
 # define DEBUG 1
 # define DEBUG_KEY 1
+
+//todo サイズを変える
 # define WIDTH 800
 # define HEIGHT 600
 # define MAP_WIDTH 480
 # define MAP_HEIGHT 360
+//todo
 # define DOT_SIZE 8
 # define DEFAULT_BG_COLOR 0x0
 
