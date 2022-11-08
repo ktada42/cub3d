@@ -1,0 +1,84 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   setup_config.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/07 17:50:34 by ktada             #+#    #+#             */
+/*   Updated: 2022/11/08 21:53:05 by ktada            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../../includes/cub3d.h"
+
+/*
+NO ./path_to_the_north_texture
+SO ./path_to_the_south_texture
+WE ./path_to_the_west_texture
+EA ./path_to_the_east_texture
+
+F 220,100,0
+C 225,30,0
+
+1111111111111111111111111
+1000000000110000000000001
+1011000001110000000000001
+1001000000000000000000001
+111111111011000001110000000000001
+100000000011000001110111111111111
+11110111111111011100000010001
+11110111111111011101010010001
+11000000110101011100000010001
+10000000000000001100000010001
+10000000000000001101010010001
+11000001110101011111011110N0111
+11110111 1110101 101111010001
+11111111 1111111 111111111111
+*/
+
+static void	free_2d_array(char **ar)
+{
+	size_t	h;
+
+	h = 0;
+	while (ar[h])
+	{
+		free(ar[h]);
+		h++;
+	}
+	free(ar);
+}
+
+static	bool	is_blank_line(char **file_text, size_t i)
+{
+	return (!file_text[i] || file_text[i][0] == '\n');
+}
+
+void	setup_config(t_state *state, char **file_text)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (file_text[++i])
+	{
+		if (is_blank_line(file_text, i))
+			continue ;
+		j = i;
+		while (!is_blank_line(file_text, j))
+			j++;
+		setup_config_part(state, file_text, i, j);
+	}
+}
+
+void	setup_config(t_state *state, int argc, char **argv)
+{
+	char	**file_text;
+
+	if (argc != 2)
+		exit_print("arg must 2\n");
+	file_text = get_file_text(argv[1]);
+	setup_config(state, file_text);
+	free_2d_array(file_text);
+}

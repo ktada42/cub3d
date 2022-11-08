@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 21:33:25 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/06 20:44:10 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/07 17:53:36 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,10 @@ typedef struct s_state {
 void	try_apply_move(t_state	*state);
 void	apply_turn(t_state	*state);
 
+//config
+bool	is_texture_config(t_state *state, char **file_text, size_t i, size_t j);
+void	parse_texture(t_state *state, char **file_text, size_t i, size_t j);
+
 //draw
 void	draw_pixel_left_up0(t_img_data *data, int x, int y, int color);
 void	draw_map(t_state *state);
@@ -116,7 +120,7 @@ void		*my_malloc(size_t type_size, size_t count);
 
 //map
 bool		has_wall_at(t_state *state, t_vector *pos);
-void		read_map(t_state *state, int argc, char **argv);
+void		setup_config(t_state *state, int argc, char **argv);
 
 //math
 void		normalize_theta(double *theta);
@@ -140,8 +144,11 @@ bool		is_turn_key(int keycode);
 bool		key_is_reset(int keycode);
 
 //press_key_state
-int			handle_key_pressdown(int keycode, t_state *state);
-int			handle_key_pressup(int keycode, t_state *state);
+int			handle_key_down(int keycode, t_state *state);
+int			handle_key_up(int keycode, t_state *state);
+
+//utils.c
+void 		exit_print(char *mes);
 
 //vector
 t_vector	*add(t_vector *lhs, t_vector *rhs);

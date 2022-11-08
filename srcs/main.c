@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 21:20:39 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/06 20:13:21 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/07 17:50:57 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ void	init_state(t_state *state, int argc, char **argv)
 	state->img.addr = mlx_get_data_addr(state->img.img, \
 		&state->img.bits_per_pixel, &state->img.line_length, \
 			&state->img.endian);
+	mlx_hook(state->win, 17, 1 << 17, close_all, &state);
 	init_press_keys(state);
 	state->player_pos = make_vector(0, 0);//todo
-	read_map(state, argc, argv);
-	mlx_hook(state->win, 17, 1 << 17, close_all, &state);
+	setup_config(state, argc, argv);
 }
 
 int	update_frame(t_state	*state)
@@ -61,8 +61,8 @@ int	main(int argc, char **argv)
 	t_state		state;
 
 	init_state(&state, argc, argv);
-	mlx_hook(state.win, ON_KEYDOWN, 1L << 0, handle_key_pressdown, &state);
-	mlx_hook(state.win, ON_KEYUP, 1L << 1, handle_key_pressup, &state);
+	mlx_hook(state.win, ON_KEYDOWN, 1L << 0, handle_key_down, &state);
+	mlx_hook(state.win, ON_KEYUP, 1L << 1, handle_key_up, &state);
 	mlx_loop_hook(state.mlx, update_frame, &state);
 	mlx_loop(state.mlx);
 	return (0);
