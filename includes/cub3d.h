@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 21:33:25 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/09 23:46:39 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/10 00:13:12 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,8 +140,8 @@ bool	is_map_part(char **file_text, size_t f, size_t t);
 void	setup_map(t_state *state, char **file_text, size_t f, size_t t);
 
 //draw
-void	draw_pixel_left_up0(t_img_data *data, int x, int y, int color);
-void	draw_map(t_state *state);
+void	draw_pixel(t_img_data *data, int x, int y, int color);
+void	draw_view(t_state *state);
 void	init_canvas(t_state *state);
 
 //get_coordinate
@@ -165,11 +165,12 @@ void		*my_malloc(size_t type_size, size_t count);
 
 //map
 bool		has_wall_at(t_state *state, t_vector *pos);
-bool		is_valid_map(t_state *state, char **file_text, size_t f, size_t t);
+void		check_valid_map(t_state *state, char **file_text, size_t f, size_t t);
+void		set_player_start_position(char **file_text, size_t f, size_t t, t_grid_pos *pos);
 void		setup_config(t_state *state, int argc, char **argv);
 
 //math
-void		normalize_theta(double *theta);
+double		normalize_theta(double theta);
 
 //frame
 //update_frame.c

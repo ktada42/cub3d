@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_valid_map.c                                     :+:      :+:    :+:   */
+/*   check_valid_map.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 17:50:34 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/09 23:23:33 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/10 00:13:13 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-static void	set_player_position(char **file_text, \
+void	set_player_start_position(char **file_text, \
 			size_t f, size_t t, t_grid_pos *pos)
 {
 	int		i;
@@ -43,7 +43,7 @@ static void	set_player_position(char **file_text, \
 //*sssss*
 //*sssss*
 //*******
-void	strcpy_2d_wrap(char **dst, char **src, size_t f, size_t t)
+static void	strcpy_2d_wrap(char **dst, char **src, size_t f, size_t t)
 {
 	size_t	i;
 
@@ -94,8 +94,10 @@ static bool	player_surrounded_wall(char **file_text, size_t f, size_t t)
 	return (valid);
 }
 
-bool	is_valid_map(t_state *state, char **file_text, size_t f, size_t t)
+void	check_valid_map(t_state *state, char **file_text, size_t f, size_t t)
 {
-	return (ft_str_cnt_2d(file_text, f, t, "NESW") != 1 \
-			&& player_surrounded_wall(file_text, f, t));
+	if (ft_str_cnt_2d(file_text, f, t, "NESW") != 1)
+		exit_print(CONFIG_ERR_MSG);
+	if (!player_surrounded_wall(file_text, f, t))
+		exit_print(CONFIG_ERR_MSG);
 }

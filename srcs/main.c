@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 21:20:39 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/09 21:04:50 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/09 23:52:56 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	update_frame(t_state	*state)
 		return (0);
 	apply_turn(state);
 	try_apply_move(state);
-	draw_map(state);
+	draw_view(state);
 	debug_state_info(state);
 	return (0);
 }
