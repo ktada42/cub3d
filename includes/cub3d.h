@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 21:33:25 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/10 00:52:43 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/10 01:02:23 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,10 @@
 
 # define CONFIG_ERR_MSG "Error\n"
 //j
-# define KEY_TURN_L 'j'
+# define KEY_TURN_L KEY_LEFT
 
 //k
-# define KEY_TURN_R 'k'
+# define KEY_TURN_R KEY_RIGHT
 
 # define KEY_ENTER 32
 
