@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 15:25:24 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/09 19:53:49 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/09 21:21:18 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ char	**ft_split(char const *s, char c, int *splited_cnt)
 	*splited_cnt = tab_size - 1;
 	tab = malloc(sizeof(char *) * tab_size);
 	if (!tab)
-		return (NULL);
+		exit(1);
 	ft_set_split(tab, s, c, tab_size);
 	return (tab);
 }

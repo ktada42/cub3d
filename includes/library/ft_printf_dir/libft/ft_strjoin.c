@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaou <kaou@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 15:25:24 by kaou              #+#    #+#             */
-/*   Updated: 2021/10/20 02:20:33 by kaou             ###   ########.fr       */
+/*   Updated: 2022/11/09 21:21:53 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	s2_len = ft_strlen(s2);
 	str = malloc(sizeof(char) * (s1_len + s2_len + 1));
 	if (!str)
-		return (NULL);
+		exit(1);
 	ft_strlcpy(str, s1, s1_len + 1);
 	ft_strlcpy(str + s1_len, s2, s2_len + 1);
 	return (str);

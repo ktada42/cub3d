@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaou <kaou@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 21:53:58 by kaou              #+#    #+#             */
-/*   Updated: 2022/06/13 17:30:05 by kaou             ###   ########.fr       */
+/*   Updated: 2022/11/09 21:24:29 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ char	*ft_read_fd(int fd, t_state_gnl	*state)
 	char	*buf;
 	ssize_t	read_cnt;
 
-	buf = (char *)malloc(sizeof(char) * ((size_t)BUFFER_SIZE + 1));
+	buf = (char *)my_malloc_gnl(sizeof(char), (size_t)BUFFER_SIZE + 1);
 	if (!buf)
 	{
 		state->error = true;

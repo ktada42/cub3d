@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 17:50:34 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/09 21:09:46 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/09 21:57:18 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	setup_ea_texture(t_state *state, char **file_text, size_t f, size_t t)
 
 	if (state->path_ea_texture)
 		exit_print(CONFIG_ERR_MSG);
-	splited = ft_split(file_text[f], ' ', &splited_cnt);
+	splited = setup_split(file_text[f], ' ', &splited_cnt);
 	if (splited_cnt != 2)
 		exit_print(CONFIG_ERR_MSG);
 	state->path_ea_texture = ft_strdup(splited[1]);

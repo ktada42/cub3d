@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaou <kaou@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 15:25:24 by kaou              #+#    #+#             */
-/*   Updated: 2022/04/02 18:44:23 by kaou             ###   ########.fr       */
+/*   Updated: 2022/11/09 21:24:08 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	*ft_strjoin_gnl(char *s1, char *s2, t_state_gnl *state)
 		return (ft_strdup_gnl(s1, state));
 	s1_len = ft_strlen_gnl(s1);
 	s2_len = ft_strlen_gnl(s2);
-	str = malloc(sizeof(char) * (s1_len + s2_len + 1));
+	str = my_malloc_gnl(sizeof(char), s1_len + s2_len + 1);
 	if (!str)
 	{
 		state->error = true;
@@ -69,7 +69,7 @@ char	*ft_strdup_gnl(const char *s1, t_state_gnl	*state)
 {
 	char	*s2;
 
-	s2 = malloc(sizeof(char) * (ft_strlen_gnl(s1) + 1));
+	s2 = my_malloc_gnl(sizeof(char), ft_strlen_gnl(s1) + 1);
 	if (!s2)
 	{
 		state->error = true;
@@ -92,7 +92,7 @@ char	*ft_substr_gnl(const char *s, \
 		return (ft_strdup_gnl("", state));
 	if (len > slen - start)
 		len = slen - start;
-	str = malloc(sizeof(char) * (len + 1));
+	str = my_malloc_gnl(sizeof(char), len + 1);
 	if (!str)
 	{
 		state->error = true;

@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   setup_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/18 15:20:40 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/09 21:21:27 by ktada            ###   ########.fr       */
+/*   Created: 2022/11/09 21:53:07 by ktada             #+#    #+#             */
+/*   Updated: 2022/11/09 21:56:40 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/cub3d.h"
 
-char	*ft_strdup(const char *s1)
+char	**setup_split(char **s, char sep, int *cnt)
 {
-	char	*s2;
+	char	**ret;
+	int		len;
 
-	s2 = malloc(sizeof(char) * (ft_strlen(s1) + 1));
-	if (!s2)
-		exit(1);
-	ft_strlcpy(s2, s1, ft_strlen(s1) + 1);
-	return (s2);
+	ret = ft_split(s, sep, cnt);
+	len = ft_strlen(ret[*cnt - 1]);
+	if (ret[len - 1] == '\n')
+		ret[len - 1] = '\0';
+	return (ret);
 }

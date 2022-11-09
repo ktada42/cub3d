@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 21:33:25 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/09 21:15:56 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/09 22:03:56 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,6 @@ typedef struct s_state {
 	char		*path_ea_texture;
 	char		*path_so_texture;
 	char		*path_we_texture;
-	bool		setuped_floor;
-	bool		setuped_ceil;
 	bool		press_key_left;
 	bool		press_key_up;
 	bool		press_key_right;
@@ -111,6 +109,10 @@ typedef struct s_state {
 void	try_apply_move(t_state	*state);
 void	apply_turn(t_state	*state);
 
+//color
+t_color	*str_to_color(char *str);
+t_color	*make_color(int r, int g, int b);
+
 //config
 bool	is_texture_config(t_state *state, char **file_text, size_t i, size_t j);
 void	parse_texture(t_state *state, char **file_text, size_t i, size_t j);
@@ -124,6 +126,9 @@ bool	is_we_part(char **file_text, size_t f, size_t t);
 void	setup_we_texture(t_state *state, char **file_text, size_t f, size_t t);
 bool	is_floor_part(char **file_text, size_t f, size_t t);
 void	setup_floor_color(t_state *state, char **file_text, size_t f, size_t t);
+char	**setup_split(char **s, char sep, int *cnt);
+bool	is_map_part(char **file_text, size_t f, size_t t);
+void	setup_map(t_state *state, char **file_text, size_t f, size_t t);
 
 //draw
 void	draw_pixel_left_up0(t_img_data *data, int x, int y, int color);

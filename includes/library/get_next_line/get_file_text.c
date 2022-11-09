@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_file_text.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaou <kaou@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 21:53:58 by kaou              #+#    #+#             */
-/*   Updated: 2022/06/16 16:54:15 by kaou             ###   ########.fr       */
+/*   Updated: 2022/11/09 21:23:13 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	*my_malloc_gnl(size_t type_size, size_t count)
 	buf = malloc(type_size * count);
 	if (!buf)
 	{
-		ft_printf("MallocError\n");
 		exit(1);
 	}
 	return (buf);
