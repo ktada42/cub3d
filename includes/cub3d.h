@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 21:33:25 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/09 23:28:07 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/09 23:38:28 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # define MAP_WIDTH 480
 # define MAP_HEIGHT 360
 //todo
-# define DOT_SIZE 8
+# define CELL_SIZE 32
 # define DEFAULT_BG_COLOR 0x0
 
 # define MAP_MAX_HEIGHT 500
@@ -141,6 +141,10 @@ void	setup_map(t_state *state, char **file_text, size_t f, size_t t);
 void	draw_pixel_left_up0(t_img_data *data, int x, int y, int color);
 void	draw_map(t_state *state);
 void	init_canvas(t_state *state);
+
+//get_coordinate
+t_vector	*cell_top_left(size_t h, size_t w);
+
 
 //string
 int		ft_str_cnt(char *s, char c);
