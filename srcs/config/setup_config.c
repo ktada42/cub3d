@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 17:50:34 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/08 21:53:05 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/09 20:53:36 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,31 +37,44 @@ C 225,30,0
 11111111 1111111 111111111111
 */
 
-static void	free_2d_array(char **ar)
-{
-	size_t	h;
-
-	h = 0;
-	while (ar[h])
-	{
-		free(ar[h]);
-		h++;
-	}
-	free(ar);
-}
-
 static	bool	is_blank_line(char **file_text, size_t i)
 {
 	return (!file_text[i] || file_text[i][0] == '\n');
 }
 
-void	setup_config(t_state *state, char **file_text)
+void	setup_config_part(t_state *state, char **file_text, size_t f, size_t t)
 {
-	int	i;
-	int	j;
+	if (is_no_part(file_text, f, t))
+		setup_no_texture(state, file_text, f, t);
+	else if (is_so_part(file_text, f, t))
+		setup_so_texture(state, file_text, f, t);
+	else if (is_we_part(file_text, f, t))
+		setup_we_texture(state, file_text, f, t);
+	else if (is_ea_part(file_text, f, t))
+		setup_ea_texture(state, file_text, f, t);
+	else if (is_floor_part(file_text, f, t))
+		setup_floor_texture(state, file_text, f, t);
+	else if (is_ceil_part(file_text, f, t))
+		setup_ceil_texture(state, file_text, f, t);
+	else if (is_map_part(file_text, f, t))
+		setup_map_texture(state, file_text, f, t);
+	else
+		exit_print(CONFIG_ERR_MSG);
+}
 
-	i = -1;
-	while (file_text[++i])
+//現状ファイルの中身はmapしかない想定(テクスチャや色の設定は受け取らない)
+//mapは最後
+void	setup_config(t_state *state, int argc, char **argv)
+{
+	char	**file_text;
+	size_t	i;
+	size_t	j;
+
+	if (argc != 2)
+		exit_print("arg must 2\n");
+	file_text = get_file_text(argv[1]);
+	i = 0;
+	while (file_text[i])
 	{
 		if (is_blank_line(file_text, i))
 			continue ;
@@ -69,16 +82,7 @@ void	setup_config(t_state *state, char **file_text)
 		while (!is_blank_line(file_text, j))
 			j++;
 		setup_config_part(state, file_text, i, j);
+		i = j;
 	}
-}
-
-void	setup_config(t_state *state, int argc, char **argv)
-{
-	char	**file_text;
-
-	if (argc != 2)
-		exit_print("arg must 2\n");
-	file_text = get_file_text(argv[1]);
-	setup_config(state, file_text);
 	free_2d_array(file_text);
 }

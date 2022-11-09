@@ -1,44 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   make.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/07 17:33:23 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/09 20:54:43 by ktada            ###   ########.fr       */
+/*   Created: 2022/11/09 21:15:16 by ktada             #+#    #+#             */
+/*   Updated: 2022/11/09 21:17:26 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
-void	exit_print(char *mes)
+t_color	*make_color(int r, int g, int b)
 {
-	ft_printf(mes);
-	exit(1);
+	t_color	*color;
+
+	color = my_malloc(sizeof(t_color), 1);
+	color->r = r;
+	color->g = g;
+	color->b = b;
+	return (color);
 }
 
-bool	starts_with(char *str, char *prefix)
+t_color	*str_to_color(char *str)
 {
-	while (*prefix)
-	{
-		if (*str != *prefix)
-			return (false);
-		str++;
-		prefix++;
-	}
-	return (true);
-}
+	char	**rgb;
 
-void	free_2d_array(char **ar)
-{
-	size_t	h;
-
-	h = 0;
-	while (ar[h])
-	{
-		free(ar[h]);
-		h++;
-	}
-	free(ar);
+	rgb = ft_split()
 }

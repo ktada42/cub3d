@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 21:33:25 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/07 17:53:36 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/09 21:15:56 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@
 # define KEY_RIGHT 65363
 # define KEY_DOWN 65364
 
+# define CONFIG_ERR_MSG "Error\n"
 //j
 # define KEY_TURN_L 'j'
 
@@ -64,7 +65,6 @@
 typedef bool**	t_map;
 
 typedef struct s_color{
-	int	t;
 	int	r;
 	int	g;
 	int	b;
@@ -86,6 +86,14 @@ typedef struct s_img_data {
 typedef struct s_state {
 	void		*mlx;
 	void		*win;
+	t_color		*floor_color;
+	t_color		*ceil_color;
+	char		*path_no_texture;
+	char		*path_ea_texture;
+	char		*path_so_texture;
+	char		*path_we_texture;
+	bool		setuped_floor;
+	bool		setuped_ceil;
 	bool		press_key_left;
 	bool		press_key_up;
 	bool		press_key_right;
@@ -106,6 +114,16 @@ void	apply_turn(t_state	*state);
 //config
 bool	is_texture_config(t_state *state, char **file_text, size_t i, size_t j);
 void	parse_texture(t_state *state, char **file_text, size_t i, size_t j);
+bool	is_no_part(char **file_text, size_t f, size_t t);
+void	setup_no_texture(t_state *state, char **file_text, size_t f, size_t t);
+bool	is_ea_part(char **file_text, size_t f, size_t t);
+void	setup_ea_texture(t_state *state, char **file_text, size_t f, size_t t);
+bool	is_so_part(char **file_text, size_t f, size_t t);
+void	setup_so_texture(t_state *state, char **file_text, size_t f, size_t t);
+bool	is_we_part(char **file_text, size_t f, size_t t);
+void	setup_we_texture(t_state *state, char **file_text, size_t f, size_t t);
+bool	is_floor_part(char **file_text, size_t f, size_t t);
+void	setup_floor_color(t_state *state, char **file_text, size_t f, size_t t);
 
 //draw
 void	draw_pixel_left_up0(t_img_data *data, int x, int y, int color);
@@ -114,6 +132,8 @@ void	init_canvas(t_state *state);
 
 //utils.c
 void		debug_state_info(t_state *state);
+bool		starts_with(char *str, char *prefix);
+void		free_2d_array(char **ar);
 
 //malloc.c
 void		*my_malloc(size_t type_size, size_t count);

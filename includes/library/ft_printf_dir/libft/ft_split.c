@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaou <kaou@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 15:25:24 by kaou              #+#    #+#             */
-/*   Updated: 2022/04/23 23:57:26 by kaou             ###   ########.fr       */
+/*   Updated: 2022/11/09 19:53:49 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static void	ft_set_split(char	**tab, char const *s, char c, size_t	tab_n)
 	tab[tab_index] = NULL;
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c, int *splited_cnt)
 {
 	char	**tab;
 	size_t	tab_size;
@@ -85,6 +85,7 @@ char	**ft_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	tab_size = ft_count_split(s, c) + 1;
+	*splited_cnt = tab_size - 1;
 	tab = malloc(sizeof(char *) * tab_size);
 	if (!tab)
 		return (NULL);

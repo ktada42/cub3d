@@ -1,23 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   setup_wall_texture.c                               :+:      :+:    :+:   */
+/*   setup_no_texture.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 17:50:34 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/08 21:53:05 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/09 21:06:36 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-bool	is_wall_texture_config(t_state *state, char **file_text, size_t i, size_t j)
+bool	is_no_part(char **file_text, size_t f, size_t t)
 {
-	if ()
+	return (f + 1 == t && starts_with(file_text[f], "NO "));
 }
 
-void	setup_wall_texture(t_state *state, char **file_text, size_t i, size_t j)
+void	setup_no_texture(t_state *state, char **file_text, size_t f, size_t t)
 {
-	
+	char	**splited;
+	int		splited_cnt;
+
+	if (state->path_no_texture)
+		exit_print(CONFIG_ERR_MSG);
+	splited = ft_split(file_text[f], ' ', &splited_cnt);
+	if (splited_cnt != 2)
+		exit_print(CONFIG_ERR_MSG);
+	state->path_no_texture = ft_strdup(splited[1]);
+	free_2d_array(splited);
 }
