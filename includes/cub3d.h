@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 21:33:25 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/10 00:13:12 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/10 00:18:24 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,6 +171,8 @@ void		setup_config(t_state *state, int argc, char **argv);
 
 //math
 double		normalize_theta(double theta);
+double		deg_to_theta(double deg);
+double		theta_to_deg(double theta);
 
 //frame
 //update_frame.c

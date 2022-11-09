@@ -6,13 +6,13 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 17:50:34 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/10 00:13:12 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/10 00:19:56 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-static void	check_is_last_config(t_state *state, char **file_text, size_t f, size_t t)
+static void	check_last_config(t_state *state, char **file_text, size_t f, size_t t)
 {
 	if (!state->path_no_texture \
 		|| !state->path_ea_texture \
@@ -49,11 +49,16 @@ static void	set_start_angle(t_state *state, char **file_text, size_t f, size_t t
 		exit_print("set_start_angle code bug error");
 }
 
+static void	set_map(t_state *state, char **file_text, size_t f, size_t t)
+{
+	strcpy_2d(state->map, file_text, f, t);
+}
+
 void	setup_map(t_state *state, char **file_text, size_t f, size_t t)
 {
-	check_is_last_config(state, file_text, f, t);
-	check_is_valid_map(state, file_text, f, t);
-	strcpy_2d(state->map, file_text, f, t);
+	check_last_config(state, file_text, f, t);
+	check_valid_map(state, file_text, f, t);
+	set_map(state->map, file_text, f, t);
 	set_start_position(state, file_text, f, t);
 	set_start_angle(state, file_text, f, t);
 }
