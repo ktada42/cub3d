@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 21:33:25 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/09 22:19:22 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/09 22:56:32 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@
 //todo
 # define DOT_SIZE 8
 # define DEFAULT_BG_COLOR 0x0
+
+# define MAP_MAX_HEIGHT 500
+# define MAP_MAX_WIDTH 500
 
 //rate
 # define MOVE_RATE 3
@@ -75,6 +78,11 @@ typedef struct s_vector {
 	double	y;
 }	t_vector;
 
+typedef struct s_grid_pos {
+	int	h;
+	int	w;
+}	t_grid_pos;
+
 typedef struct s_img_data {
 	void	*img;
 	char	*addr;
@@ -98,6 +106,7 @@ typedef struct s_state {
 	bool		press_key_down;
 	bool		press_key_turn_l;
 	bool		press_key_turn_r;
+	char		start_player_dir;
 	double		player_angle;
 	t_vector	*player_pos;
 	long long	cur_frame;
@@ -135,15 +144,17 @@ void	draw_pixel_left_up0(t_img_data *data, int x, int y, int color);
 void	draw_map(t_state *state);
 void	init_canvas(t_state *state);
 
-//ft_str_cnt.c
+//string
 int		ft_str_cnt(char *s, char c);
 int		ft_str_cnt_set(char *s, char *set);
 int		ft_str_cnt_set_2d(char **s, size_t f, size_t t, char *set);
+void	strcpy_2d(char **dst, char **src, size_t f, size_t t);
 
 //utils.c
 void		debug_state_info(t_state *state);
 bool		starts_with(char *str, char *prefix);
 void		free_2d_array(char **ar);
+void		fill(char **dst, size_t height, size_t width, char v);
 
 //malloc.c
 void		*my_malloc(size_t type_size, size_t count);

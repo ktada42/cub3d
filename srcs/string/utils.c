@@ -1,18 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   setup_map.c                                        :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/07 17:50:34 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/09 22:38:22 by ktada            ###   ########.fr       */
+/*   Created: 2022/11/09 22:49:49 by ktada             #+#    #+#             */
+/*   Updated: 2022/11/09 22:56:32 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	setup_map(t_state *state, char **file_text, size_t f, size_t t)
+void	fill(char **dst, size_t height, size_t width, char v)
 {
-	
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	while (i < height)
+	{
+		j = 0;
+		while (j < width)
+		{
+			dst[i][j] = v;
+			j++;
+		}
+		i++;
+	}
+}
+
+void	strcpy_2d(char **dst, char **src, size_t f, size_t t)
+{
+	size_t	i;
+
+	i = f;
+	while (i < t)
+	{
+		ft_strlcpy(dst[i - f], src[i], ft_strlen(dst[i - f]) + 100);
+		i++;
+	}
 }
