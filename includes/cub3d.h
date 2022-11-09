@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 21:33:25 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/09 22:56:32 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/09 23:28:07 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,6 @@
 
 # define KEY_ENTER 32
 
-typedef bool**	t_map;
-
 typedef struct s_color{
 	int	r;
 	int	g;
@@ -111,7 +109,7 @@ typedef struct s_state {
 	t_vector	*player_pos;
 	long long	cur_frame;
 	t_img_data	img;
-	t_map		map;
+	char		map[MAP_MAX_HEIGHT][MAP_MAX_WIDTH];
 }	t_state;
 
 //action
@@ -161,6 +159,7 @@ void		*my_malloc(size_t type_size, size_t count);
 
 //map
 bool		has_wall_at(t_state *state, t_vector *pos);
+bool		is_valid_map(t_state *state, char **file_text, size_t f, size_t t);
 void		setup_config(t_state *state, int argc, char **argv);
 
 //math

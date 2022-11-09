@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 17:50:34 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/09 23:04:15 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/09 23:23:33 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,42 +37,65 @@ static void	set_player_position(char **file_text, \
 	}
 }
 
-static bool	is_inside(int cur_h, int cur_w, int height, int width)
+//copy 2d with wrap as follows
+//*******
+//*sssss*
+//*sssss*
+//*sssss*
+//*******
+void	strcpy_2d_wrap(char **dst, char **src, size_t f, size_t t)
 {
-	return (0 <= cur_h && cur_h < height && 0 <= cur_w && cur_w < width);
+	size_t	i;
+
+	i = f;
+	while (i < t)
+	{
+		ft_strlcpy(dst[i - f + 1] + 1, src[i], ft_strlen(dst[i - f]) + 100);
+		i++;
+	}
 }
 
-static bool	is_surrounded_wall(char **file_text, size_t size, int cur_h, int cur_w)
+//if player surrounded wall, it's ok case
+//1111
+//11N01
+//  11110000
+//  00000000
+static bool	is_surrounded_wall(char **map, int cur_h, int cur_w)
 {
 	bool	ok;
 
+	if (map[cur_h][cur_w] == ' ')
+		return (false);
 	ok = true;
-	file_text[cur_h][cur_w] = '1';
-	if (can_move(cur_h + 1, cur_w, size, size))
-		ok &= is_surrounded_wall(file_text, size, cur_h + 1, cur_w);
-	
+	map[cur_h][cur_w] = '1';
+	if (map[cur_h + 1][cur_w] != '1')
+		ok &= is_surrounded_wall(map, cur_h + 1, cur_w);
+	if (map[cur_h][cur_w + 1] != '1')
+		ok &= is_surrounded_wall(map, cur_h, cur_w + 1);
+	if (map[cur_h - 1][cur_w] != '1')
+		ok &= is_surrounded_wall(map, cur_h - 1, cur_w);
+	if (map[cur_h][cur_w - 1] != '1')
+		ok &= is_surrounded_wall(map, cur_h, cur_w - 1);
+	return (ok);
 }
 
 static bool	player_surrounded_wall(char **file_text, size_t f, size_t t)
 {
 	t_grid_pos	*start;
-	char		buf[MAP_MAX_HEIGHT][MAP_MAX_WIDTH];
+	char		buf[MAP_MAX_HEIGHT + 2][MAP_MAX_WIDTH + 2];
 	bool		valid;
 
-	my_malloc(sizeof(t_grid_pos), 1);
+	start = my_malloc(sizeof(t_grid_pos), 1);
 	set_player_position(file_text, f, t, start);
-	fill(buf, MAP_MAX_HEIGHT, MAP_MAX_WIDTH, ' ');
-	strcpy_2d(buf, file_text, f, t);
-	valid = is_surrounded_wall(file_text, MAP_MAX_HEIGHT, start->h, start->w);
+	fill(buf, MAP_MAX_HEIGHT + 2, MAP_MAX_WIDTH + 2, ' ');
+	strcpy_2d_wrap(buf, file_text, f, t);
+	valid = is_surrounded_wall(file_text, start->h + 1, start->w + 1);
 	free(start);
 	return (valid);
 }
 
-static bool	is_valid_map(t_state *state, char **file_text, size_t f, size_t t)
+bool	is_valid_map(t_state *state, char **file_text, size_t f, size_t t)
 {
-	if (ft_str_cnt_2d(file_text, f, t, "NESW") != 1)
-		return (false);
-	if (!player_surrounded_wall(file_text, f, t))
-		return (false);
-	return (true);
+	return (ft_str_cnt_2d(file_text, f, t, "NESW") != 1 \
+			&& player_surrounded_wall(file_text, f, t));
 }
