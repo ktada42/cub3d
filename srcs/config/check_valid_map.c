@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 17:50:34 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/10 00:13:13 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/10 00:59:12 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,30 +27,12 @@ void	set_player_start_position(char **file_text, \
 			if (file_text[i][j] == 'N' || file_text[i][j] == 'E' \
 				|| file_text[i][j] == 'S' || file_text[i][j] == 'W')
 			{
-				pos->h = i;
+				pos->h = i - f;
 				pos->w = j;
 				return ;
 			}
 			j++;
 		}
-		i++;
-	}
-}
-
-//copy 2d with wrap as follows
-//*******
-//*sssss*
-//*sssss*
-//*sssss*
-//*******
-static void	strcpy_2d_wrap(char **dst, char **src, size_t f, size_t t)
-{
-	size_t	i;
-
-	i = f;
-	while (i < t)
-	{
-		ft_strlcpy(dst[i - f + 1] + 1, src[i], ft_strlen(dst[i - f]) + 100);
 		i++;
 	}
 }
@@ -62,21 +44,22 @@ static void	strcpy_2d_wrap(char **dst, char **src, size_t f, size_t t)
 //  00000000
 static bool	is_surrounded_wall(char **map, int cur_h, int cur_w)
 {
-	bool	ok;
-
-	if (map[cur_h][cur_w] == ' ')
+	if (map[cur_h][cur_w] == ' ' || map[cur_h][cur_w] == '\n')
 		return (false);
-	ok = true;
 	map[cur_h][cur_w] = '1';
-	if (map[cur_h + 1][cur_w] != '1')
-		ok &= is_surrounded_wall(map, cur_h + 1, cur_w);
-	if (map[cur_h][cur_w + 1] != '1')
-		ok &= is_surrounded_wall(map, cur_h, cur_w + 1);
-	if (map[cur_h - 1][cur_w] != '1')
-		ok &= is_surrounded_wall(map, cur_h - 1, cur_w);
-	if (map[cur_h][cur_w - 1] != '1')
-		ok &= is_surrounded_wall(map, cur_h, cur_w - 1);
-	return (ok);
+	if (map[cur_h + 1][cur_w] != '1' \
+		&& !is_surrounded_wall(map, cur_h + 1, cur_w))
+		return (false);
+	if (map[cur_h][cur_w + 1] != '1' \
+		&& !is_surrounded_wall(map, cur_h, cur_w + 1))
+		return (false);
+	if (map[cur_h - 1][cur_w] != '1' \
+		&& !is_surrounded_wall(map, cur_h - 1, cur_w))
+		return (false);
+	if (map[cur_h][cur_w - 1] != '1' \
+		&& !is_surrounded_wall(map, cur_h, cur_w - 1))
+		return (false);
+	return (true);
 }
 
 static bool	player_surrounded_wall(char **file_text, size_t f, size_t t)
@@ -94,9 +77,14 @@ static bool	player_surrounded_wall(char **file_text, size_t f, size_t t)
 	return (valid);
 }
 
+bool	only_one_player(char **file_text, size_t f, size_t t)
+{
+	return (ft_str_cnt_2d(file_text, f, t, "NESW") == 1);
+}
+
 void	check_valid_map(t_state *state, char **file_text, size_t f, size_t t)
 {
-	if (ft_str_cnt_2d(file_text, f, t, "NESW") != 1)
+	if (!only_one_player(file_text, f, t))
 		exit_print(CONFIG_ERR_MSG);
 	if (!player_surrounded_wall(file_text, f, t))
 		exit_print(CONFIG_ERR_MSG);

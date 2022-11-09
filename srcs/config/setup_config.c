@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 17:50:34 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/09 23:46:01 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/10 00:52:00 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,21 +42,22 @@ static	bool	is_blank_line(char **file_text, size_t i)
 	return (!file_text[i] || file_text[i][0] == '\n');
 }
 
-void	setup_config_part(t_state *state, char **file_text, size_t f, size_t t)
+static void	setup_config_part(t_state *state, \
+	char **file_text, size_t f, size_t t)
 {
-	if (is_no_part(file_text, f, t))
+	if (is_no_config(file_text, f, t))
 		setup_no_texture(state, file_text, f, t);
-	else if (is_so_part(file_text, f, t))
+	else if (is_so_config(file_text, f, t))
 		setup_so_texture(state, file_text, f, t);
-	else if (is_we_part(file_text, f, t))
+	else if (is_we_config(file_text, f, t))
 		setup_we_texture(state, file_text, f, t);
-	else if (is_ea_part(file_text, f, t))
+	else if (is_ea_config(file_text, f, t))
 		setup_ea_texture(state, file_text, f, t);
-	else if (is_floor_part(file_text, f, t))
+	else if (is_floor_config(file_text, f, t))
 		setup_floor_color(state, file_text, f, t);
-	else if (is_ceil_part(file_text, f, t))
+	else if (is_ceil_config(file_text, f, t))
 		setup_ceil_color(state, file_text, f, t);
-	else if (is_map_part(file_text, f, t))
+	else if (is_map_config(file_text, f, t))
 		setup_map_texture(state, file_text, f, t);
 	else
 		exit_print(CONFIG_ERR_MSG);

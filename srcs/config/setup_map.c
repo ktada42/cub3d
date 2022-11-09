@@ -6,13 +6,14 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 17:50:34 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/10 00:19:56 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/10 00:22:24 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-static void	check_last_config(t_state *state, char **file_text, size_t f, size_t t)
+static void	check_last_config(t_state *state, \
+	char **file_text, size_t f, size_t t)
 {
 	if (!state->path_no_texture \
 		|| !state->path_ea_texture \
@@ -23,7 +24,8 @@ static void	check_last_config(t_state *state, char **file_text, size_t f, size_t
 		exit_print(CONFIG_ERR_MSG);
 }
 
-static void	set_start_position(t_state *state, char **file_text, size_t f, size_t t)
+static void	set_start_position(t_state *state, \
+	char **file_text, size_t f, size_t t)
 {
 	t_grid_pos	*start;
 
@@ -35,7 +37,8 @@ static void	set_start_position(t_state *state, char **file_text, size_t f, size_
 	free(start);
 }
 
-static void	set_start_angle(t_state *state, char **file_text, size_t f, size_t t)
+static void	set_start_angle(t_state *state, \
+	char **file_text, size_t f, size_t t)
 {
 	if (ft_str_cnt_set_2d(file_text, f, t, "E"))
 		state->player_angle = deg_to_theta(0);

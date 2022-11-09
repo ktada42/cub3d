@@ -1,32 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   setup_ea_texture.c                                 :+:      :+:    :+:   */
+/*   is_map_config.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 17:50:34 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/09 21:57:18 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/09 22:03:02 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-bool	is_ea_part(char **file_text, size_t f, size_t t)
+static	bool	is_all_of(char *s, char *set)
 {
-	return (f + 1 == t && starts_with(file_text[f], "EA "));
+	while (*s)
+	{
+		if (!ft_strchr(set, *s))
+			return (false);
+		s++;
+	}
+	return (true);
 }
 
-void	setup_ea_texture(t_state *state, char **file_text, size_t f, size_t t)
+static bool	is_all_of_2d(char **s, size_t f, size_t t, char	*set)
 {
-	char	**splited;
-	int		splited_cnt;
+	size_t	i;
 
-	if (state->path_ea_texture)
-		exit_print(CONFIG_ERR_MSG);
-	splited = setup_split(file_text[f], ' ', &splited_cnt);
-	if (splited_cnt != 2)
-		exit_print(CONFIG_ERR_MSG);
-	state->path_ea_texture = ft_strdup(splited[1]);
-	free_2d_array(splited);
+	i = f;
+	while (i < t)
+	{
+		if (!is_all_of(s[i], set))
+			return (false);
+		i++;
+	}
+	return (true);
+}
+
+//スペースだけの行もmapの一部として認める
+bool	is_map_config(char **file_text, size_t f, size_t t)
+{
+	return (is_all_of_2d(file_text, f, t, " 01NESW\n"));
 }
