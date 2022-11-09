@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 17:50:34 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/09 20:53:36 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/09 23:46:01 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,15 @@ void	setup_config_part(t_state *state, char **file_text, size_t f, size_t t)
 	else if (is_ea_part(file_text, f, t))
 		setup_ea_texture(state, file_text, f, t);
 	else if (is_floor_part(file_text, f, t))
-		setup_floor_texture(state, file_text, f, t);
+		setup_floor_color(state, file_text, f, t);
 	else if (is_ceil_part(file_text, f, t))
-		setup_ceil_texture(state, file_text, f, t);
+		setup_ceil_color(state, file_text, f, t);
 	else if (is_map_part(file_text, f, t))
 		setup_map_texture(state, file_text, f, t);
 	else
 		exit_print(CONFIG_ERR_MSG);
 }
 
-//現状ファイルの中身はmapしかない想定(テクスチャや色の設定は受け取らない)
 //mapは最後
 void	setup_config(t_state *state, int argc, char **argv)
 {
@@ -72,7 +71,7 @@ void	setup_config(t_state *state, int argc, char **argv)
 
 	if (argc != 2)
 		exit_print("arg must 2\n");
-	file_text = get_file_text(argv[1]);
+	file_text = get_all_line(argv[1]);
 	i = 0;
 	while (file_text[i])
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaou <kaou@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 21:54:34 by kaou              #+#    #+#             */
-/*   Updated: 2022/06/14 01:50:44 by kaou             ###   ########.fr       */
+/*   Updated: 2022/11/09 23:43:53 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@ char	*ft_strdup_gnl(const char *s1, t_state_gnl	*state);
 char	*ft_strchr_gnl(const char *s, int c);
 char	*ft_substr_gnl(const char *s, size_t left, size_t len, t_state_gnl *st);
 char	*get_next_line(int fd);
-char	**get_file_text(char *file_path);
+char	**get_all_line(char *file_path);
 
 #endif

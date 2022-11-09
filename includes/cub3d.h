@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 21:33:25 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/09 23:38:28 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/09 23:46:39 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,8 @@ bool	is_we_part(char **file_text, size_t f, size_t t);
 void	setup_we_texture(t_state *state, char **file_text, size_t f, size_t t);
 bool	is_floor_part(char **file_text, size_t f, size_t t);
 void	setup_floor_color(t_state *state, char **file_text, size_t f, size_t t);
+bool	is_ceil_part(char **file_text, size_t f, size_t t);
+void	setup_ceil_color(t_state *state, char **file_text, size_t f, size_t t);
 char	**setup_split(char **s, char sep, int *cnt);
 bool	is_map_part(char **file_text, size_t f, size_t t);
 void	setup_map(t_state *state, char **file_text, size_t f, size_t t);
