@@ -13,6 +13,7 @@ SRCS =  \
 		srcs/config/setup_config.c \
 		srcs/config/setup_map.c \
 		srcs/config/setup_texture.c \
+		srcs/debug/print.c \
 		srcs/draw/draw_map.c \
 		srcs/draw/draw_pixel.c \
 		srcs/draw/init_canvas.c \
@@ -44,7 +45,7 @@ $(NAME): $(OBJS)
 	clear
 	@$(MAKE) -C $(LIB_DIR)
 	@$(MAKE) -C $(MLX_DIR)
-	$(CC) $(OBJS) $(LIB) -Lmlx -L/usr/X11R6/lib  -lmlx -lX11 -lXext -framework OpenGL -framework AppKit -o $(NAME)
+	@$(CC) $(OBJS) $(LIB) -Lmlx -L/usr/X11R6/lib  -lmlx -lX11 -lXext -framework OpenGL -framework AppKit -o $(NAME)
 
 clean:
 	$(MAKE) clean -C $(LIB_DIR)
