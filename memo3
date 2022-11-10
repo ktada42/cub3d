@@ -26,3 +26,11 @@ element can be set in any order in the file.
 
 xpmファイルを貼り付ける際にどうするか
 
+入力ファイルがmax_height, max_widthよりも大きい場合の処理
+
+errorの際にウィンドウが開いてる気がする
+
+error_map_with_hole が弾けてない
+
+error_no_map.cub
+

@@ -11,6 +11,7 @@ SRCS =  \
 		srcs/config/is_texture_config.c \
 		srcs/config/setup_color.c \
 		srcs/config/setup_config.c \
+		srcs/config/setup_map_utils.c \
 		srcs/config/setup_map.c \
 		srcs/config/setup_texture.c \
 		srcs/debug/print.c \
@@ -30,6 +31,7 @@ SRCS =  \
 		srcs/vector/length.c \
 		srcs/vector/make.c \
 		srcs/vector/normalize.c \
+		srcs/init_state.c \
 		srcs/main.c \
 		srcs/utils.c \
 	

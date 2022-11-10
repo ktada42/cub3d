@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 17:50:34 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/11 01:45:39 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/11 03:10:57 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static void	set_map(t_state *state, char **file_text, size_t f, size_t t)
 	strcpy_2d(state->map, file_text, f, t);
 }
 
-void	setup_map(t_state *state, char **file_text, size_t f, size_t t)
+size_t	setup_map(t_state *state, char **file_text, size_t f, size_t t)
 {
 	check_last_config(state);
 	check_valid_map(file_text, f, t);
@@ -67,4 +67,5 @@ void	setup_map(t_state *state, char **file_text, size_t f, size_t t)
 	set_start_position(state, file_text, f, t);
 	set_start_angle(state, file_text, f, t);
 	state->builded_map = true;
+	return (get_next_blank_line(file_text, f));
 }

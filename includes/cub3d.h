@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 21:33:25 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/11 02:34:11 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/11 04:36:40 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,6 @@ typedef struct s_state {
 	bool		press_key_down;
 	bool		press_key_turn_l;
 	bool		press_key_turn_r;
-	char		start_player_dir;
 	double		player_angle;
 	t_vector	*player_pos;
 	bool		builded_map;
@@ -125,22 +124,25 @@ t_color	*make_color(int r, int g, int b);
 bool	is_texture_config(t_state *state, char **file_text, size_t i, size_t j);
 void	parse_texture(t_state *state, char **file_text, size_t i, size_t j);
 bool	is_no_config(char **file_text, size_t f, size_t t);
-void	setup_no_texture(t_state *state, char **file_text, size_t f);
+size_t	setup_no_texture(t_state *state, char **file_text, size_t f);
 bool	is_ea_config(char **file_text, size_t f, size_t t);
-void	setup_ea_texture(t_state *state, char **file_text, size_t f);
+size_t	setup_ea_texture(t_state *state, char **file_text, size_t f);
 bool	is_so_config(char **file_text, size_t f, size_t t);
-void	setup_so_texture(t_state *state, char **file_text, size_t f);
+size_t	setup_so_texture(t_state *state, char **file_text, size_t f);
 bool	is_we_config(char **file_text, size_t f, size_t t);
-void	setup_we_texture(t_state *state, char **file_text, size_t f);
+size_t	setup_we_texture(t_state *state, char **file_text, size_t f);
 bool	is_floor_config(char **file_text, size_t f, size_t t);
-void	setup_floor_color(t_state *state, char **file_text, size_t f);
+size_t	setup_floor_color(t_state *state, char **file_text, size_t f);
 bool	is_ceil_config(char **file_text, size_t f, size_t t);
-void	setup_ceil_color(t_state *state, char **file_text, size_t f);
+size_t	setup_ceil_color(t_state *state, char **file_text, size_t f);
 bool	is_map_config(char **file_text, size_t f, size_t t);
-void	setup_map(t_state *state, char **file_text, size_t f, size_t t);
+size_t	setup_map(t_state *state, char **file_text, size_t f, size_t t);
+bool	is_blank_line(char **file_text, size_t i);
+size_t	get_next_blank_line(char **file_text, size_t i);
 
 //debug
 void	print_state(t_state *state);
+void	print_map(char	**s, size_t h, size_t w);
 void	deb(char *s);
 
 //draw
@@ -215,9 +217,8 @@ void		copy_vector(t_vector *dst, t_vector *src);
 double		length(t_vector	*vec);
 t_vector	*normalize_vector(t_vector *vec);
 
-//main
-void		init_press_keys(t_state *state);
 
 int			close_all(int keycode, t_state *state);
+void		init_state(t_state *state, int argc, char **argv);
 
 #endif

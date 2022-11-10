@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 21:20:39 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/11 02:29:20 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/11 03:22:42 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,33 +18,6 @@ int	close_all(int keycode, t_state *state)
 	(void)state;
 	exit(0);
 	return (0);
-}
-
-void	init_press_keys(t_state *state)
-{
-	state->press_key_left = false;
-	state->press_key_up = false;
-	state->press_key_right = false;
-	state->press_key_down = false;
-	state->press_key_turn_l = false;
-	state->press_key_turn_r = false;
-}
-
-void	init_state(t_state *state, int argc, char **argv)
-{
-	state->mlx = mlx_init();
-	state->win = mlx_new_window(state->mlx, WIDTH, HEIGHT, "cub3d");
-	state->img.img = mlx_new_image(state->mlx, WIDTH, HEIGHT);
-	state->img.addr = mlx_get_data_addr(state->img.img, \
-		&state->img.bits_per_pixel, &state->img.line_length, \
-			&state->img.endian);
-	mlx_hook(state->win, 17, 1 << 17, close_all, &state);
-	init_press_keys(state);
-	state->builded_map = false;
-	state->cur_frame = 0;
-	setup_config(state, argc, argv);
-	print_state(state);
-	exit(1);
 }
 
 int	update_frame(t_state	*state)

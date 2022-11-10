@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 17:50:34 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/11 01:30:59 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/11 04:18:01 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,15 @@ void	set_player_start_position(char **file_text, \
 //11N01
 //  11110000
 //  00000000
+//
+//
+// 111
+// 1N1
+// 111
 static bool	is_surrounded_wall(char **map, int cur_h, int cur_w)
 {
-	if (map[cur_h][cur_w] == ' ')
+	printf("curh %d, curw %d\n", cur_h, cur_w);
+	if (map[cur_h][cur_w] == ' ' || map[cur_h][cur_w] == '\0')
 		return (false);
 	map[cur_h][cur_w] = '1';
 	if (map[cur_h + 1][cur_w] != '1' \
@@ -73,7 +79,10 @@ static bool	player_surrounded_wall(char **file_text, size_t f, size_t t)
 	set_player_start_position(file_text, f, t, start);
 	fill(buf, MAP_MAX_HEIGHT + 2, MAP_MAX_WIDTH + 2, ' ');
 	strcpy_2d_wrap(buf, file_text, f, t);
-	valid = is_surrounded_wall(file_text, start->h + 1, start->w + 1);
+	deb("buf");
+	print_map(buf, MAP_MAX_HEIGHT + 2, MAP_MAX_WIDTH + 2);
+	valid = is_surrounded_wall(buf, start->h + 1, start->w + 1);
+	valid = true;
 	free(start);
 	free_2d_char_array(buf);
 	return (valid);

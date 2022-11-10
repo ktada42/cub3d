@@ -28,12 +28,16 @@ static void	setup_color(t_color	**color, char **file_text, size_t f)
 	free_2d_char_array(splited);
 }
 
-void	setup_floor_color(t_state *state, char **file_text, size_t f)
+size_t	setup_floor_color(t_state *state, char **file_text, size_t f)
 {
+	deb("setup_floor_color");
 	setup_color(&state->floor_color, file_text, f);
+	return (f + 1);
 }
 
-void	setup_ceil_color(t_state *state, char **file_text, size_t f)
+size_t	setup_ceil_color(t_state *state, char **file_text, size_t f)
 {
+	deb("setup_ceil_color");
 	setup_color(&state->ceil_color, file_text, f);
+	return (f + 1);
 }
