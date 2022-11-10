@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 21:33:25 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/11 01:52:11 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/11 02:01:08 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,9 @@ bool	is_ceil_config(char **file_text, size_t f, size_t t);
 void	setup_ceil_color(t_state *state, char **file_text, size_t f);
 bool	is_map_config(char **file_text, size_t f, size_t t);
 void	setup_map(t_state *state, char **file_text, size_t f, size_t t);
+
+//debug
+void print_state(t_state *state);
 
 //draw
 void	draw_pixel(t_img_data *data, int x, int y, int color);

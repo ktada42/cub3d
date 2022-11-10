@@ -41,6 +41,7 @@ LIB_DIR = ./includes/library
 	@$(CC) -g -Wall -Wextra -Werror -Imlx -c $< -o $@
 
 $(NAME): $(OBJS)
+	clear
 	@$(MAKE) -C $(LIB_DIR)
 	@$(MAKE) -C $(MLX_DIR)
 	$(CC) $(OBJS) $(LIB) -Lmlx -L/usr/X11R6/lib  -lmlx -lX11 -lXext -framework OpenGL -framework AppKit -o $(NAME)

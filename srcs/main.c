@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 21:20:39 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/10 23:35:54 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/11 01:58:59 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	init_state(t_state *state, int argc, char **argv)
 	state->builded_map = false;
 	state->cur_frame = 0;
 	setup_config(state, argc, argv);
+	print_state(state);
 }
 
 int	update_frame(t_state	*state)
