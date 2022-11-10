@@ -19,7 +19,7 @@ void	setup_color(t_color	**color, char **file_text, size_t f, size_t t)
 
 	if (*color)
 		exit_print(CONFIG_ERR_MSG);
-	splited = setup_split(file_text[f], ' ', &splited_cnt);
+	splited = ft_split(file_text[f], ' ', &splited_cnt);
 	if (splited_cnt != 2)
 		exit_print(CONFIG_ERR_MSG);
 	*color = str_to_color(splited[1]);

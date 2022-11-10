@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 21:54:34 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/09 23:43:53 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/10 23:28:25 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,6 @@ char	*ft_strchr_gnl(const char *s, int c);
 char	*ft_substr_gnl(const char *s, size_t left, size_t len, t_state_gnl *st);
 char	*get_next_line(int fd);
 char	**get_all_line(char *file_path);
+char	**get_all_line_without_nl(char *file_path);
 
 #endif

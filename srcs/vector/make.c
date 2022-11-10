@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:48:55 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/06 20:02:48 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/10 23:47:45 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ t_vector	*make_vector(double x, double y)
 	t_vector	*vec;
 
 	vec = my_malloc(sizeof(t_vector), 1);
+	vec->x = x;
+	vec->y = y;
 	return (vec);
 }
 

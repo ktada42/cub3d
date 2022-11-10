@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 17:50:34 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/10 00:49:17 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/10 23:42:07 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	setup_texture(char **path_ptr, char **file_text, size_t f, size_t t)
 
 	if (*path_ptr)
 		exit_print(CONFIG_ERR_MSG);
-	splited = setup_split(file_text[f], ' ', &splited_cnt);
+	splited = ft_split(file_text[f], ' ', &splited_cnt);
 	if (splited_cnt != 2)
 		exit_print(CONFIG_ERR_MSG);
 	*path_ptr = ft_strdup(splited[1]);

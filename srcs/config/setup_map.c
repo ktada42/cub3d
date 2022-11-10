@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 17:50:34 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/10 00:22:24 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/10 23:40:36 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@ static void	check_last_config(t_state *state, \
 		|| !state->path_so_texture \
 		|| !state->path_we_texture \
 		|| !state->floor_color \
-		|| !state->ceil_color)
+		|| !state->ceil_color \
+		|| state->builded_map \
+		)
 		exit_print(CONFIG_ERR_MSG);
 }
 
@@ -64,4 +66,5 @@ void	setup_map(t_state *state, char **file_text, size_t f, size_t t)
 	set_map(state->map, file_text, f, t);
 	set_start_position(state, file_text, f, t);
 	set_start_angle(state, file_text, f, t);
+	state->builded_map = true;
 }

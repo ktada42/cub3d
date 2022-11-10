@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 17:50:34 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/10 00:59:12 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/11 00:03:29 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	set_player_start_position(char **file_text, \
 			size_t f, size_t t, t_grid_pos *pos)
 {
-	int		i;
-	int		j;
+	size_t	i;
+	size_t	j;
 
 	i = f;
 	while (i < t)
@@ -44,7 +44,7 @@ void	set_player_start_position(char **file_text, \
 //  00000000
 static bool	is_surrounded_wall(char **map, int cur_h, int cur_w)
 {
-	if (map[cur_h][cur_w] == ' ' || map[cur_h][cur_w] == '\n')
+	if (map[cur_h][cur_w] == ' ')
 		return (false);
 	map[cur_h][cur_w] = '1';
 	if (map[cur_h + 1][cur_w] != '1' \
@@ -69,7 +69,7 @@ static bool	player_surrounded_wall(char **file_text, size_t f, size_t t)
 	bool		valid;
 
 	start = my_malloc(sizeof(t_grid_pos), 1);
-	set_player_position(file_text, f, t, start);
+	set_player_start_position(file_text, f, t, start);
 	fill(buf, MAP_MAX_HEIGHT + 2, MAP_MAX_WIDTH + 2, ' ');
 	strcpy_2d_wrap(buf, file_text, f, t);
 	valid = is_surrounded_wall(file_text, start->h + 1, start->w + 1);
@@ -77,14 +77,14 @@ static bool	player_surrounded_wall(char **file_text, size_t f, size_t t)
 	return (valid);
 }
 
-bool	only_one_player(char **file_text, size_t f, size_t t)
+bool	has_only_one_player(char **file_text, size_t f, size_t t)
 {
-	return (ft_str_cnt_2d(file_text, f, t, "NESW") == 1);
+	return (ft_str_cnt_set_2d(file_text, f, t, "NESW") == 1);
 }
 
 void	check_valid_map(t_state *state, char **file_text, size_t f, size_t t)
 {
-	if (!only_one_player(file_text, f, t))
+	if (!has_only_one_player(file_text, f, t))
 		exit_print(CONFIG_ERR_MSG);
 	if (!player_surrounded_wall(file_text, f, t))
 		exit_print(CONFIG_ERR_MSG);

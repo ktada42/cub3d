@@ -1,0 +1,28 @@
+
+
+*cubファイルの file_nameがおかしい
+*	拡張子が.cubじゃない
+*	.cubはダメ
+
+スペースの代わりにタブを使った場合に弾くか確認
+
+C 255,255,255,
+C 255,255,,255
+などの,でsplitしたときに3つになるが
+実際はおかしいケースに対応できてるか(現状できていると思っている)
+
+
+ Except for the map content which always has to be the last, each type of
+element can be set in any order in the file.
+の読解
+
+仮にどんな順でもいいという解釈なら
+それ用のcubファイルを作る
+
+//これがokか（現状これは対応している）
+ 1
+1S1
+ 1
+
+xpmファイルを貼り付ける際にどうするか
+

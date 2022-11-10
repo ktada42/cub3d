@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 17:50:34 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/10 00:52:00 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/10 23:31:50 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ C 225,30,0
 
 static	bool	is_blank_line(char **file_text, size_t i)
 {
-	return (!file_text[i] || file_text[i][0] == '\n');
+	return (!file_text[i]);
 }
 
 static void	setup_config_part(t_state *state, \
@@ -58,7 +58,7 @@ static void	setup_config_part(t_state *state, \
 	else if (is_ceil_config(file_text, f, t))
 		setup_ceil_color(state, file_text, f, t);
 	else if (is_map_config(file_text, f, t))
-		setup_map_texture(state, file_text, f, t);
+		setup_map(state, file_text, f, t);
 	else
 		exit_print(CONFIG_ERR_MSG);
 }
@@ -72,7 +72,7 @@ void	setup_config(t_state *state, int argc, char **argv)
 
 	if (argc != 2)
 		exit_print("arg must 2\n");
-	file_text = get_all_line(argv[1]);
+	file_text = get_all_line_without_nl(argv[1]);
 	i = 0;
 	while (file_text[i])
 	{

@@ -40,5 +40,5 @@ static bool	is_all_of_2d(char **s, size_t f, size_t t, char	*set)
 //スペースだけの行もmapの一部として認める
 bool	is_map_config(char **file_text, size_t f, size_t t)
 {
-	return (is_all_of_2d(file_text, f, t, " 01NESW\n"));
+	return (is_all_of_2d(file_text, f, t, " 01NESW"));
 }

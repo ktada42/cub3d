@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 21:53:58 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/09 21:23:13 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/10 23:28:10 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	append_string(char	***ret, char	*add, int *i, int *size)
 }
 
 //中身がi行の時、ret[i] == NULLになる(i以降もNULL)
-char	**get_file_text(char *file_path)
+char	**get_all_line(char *file_path)
 {
 	char	**ret;
 	int		i;
@@ -78,5 +78,32 @@ char	**get_file_text(char *file_path)
 		free(line);
 		line = get_next_line(fd);
 	}
+	return (ret);
+}
+
+//中身がi行の時、ret[i] == NULLになる(i以降もNULL)
+//改行コードを取り除く
+char	**get_all_line_without_nl(char *file_path)
+{
+	char	**ret;
+	size_t	i;
+	size_t	j;
+	char	*ptr;
+
+	ret = get_all_line(file_path);
+	i = 0;
+	while (ret[i])
+	{
+		j = 0;
+		while (ret[i][j])
+		{
+			if (ret[i][j] == '\n')
+			{
+				ret[i][j] = '\0';
+			}
+			j++;
+		}
+		i++;
+	}	
 	return (ret);
 }

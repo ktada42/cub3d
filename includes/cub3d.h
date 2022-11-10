@@ -6,14 +6,14 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 21:33:25 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/10 01:02:23 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/11 00:00:49 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 # include "library/library.h"
-# include <mlx.h>
+# include "mlx/mlx.h"
 # include <stdio.h>
 # include <stdbool.h>
 # include <stdlib.h>
@@ -107,7 +107,8 @@ typedef struct s_state {
 	char		start_player_dir;
 	double		player_angle;
 	t_vector	*player_pos;
-	long long	cur_frame;
+	bool		builded_map;
+	size_t		cur_frame;
 	t_img_data	img;
 	char		map[MAP_MAX_HEIGHT][MAP_MAX_WIDTH];
 }	t_state;
@@ -135,9 +136,8 @@ bool	is_floor_config(char **file_text, size_t f, size_t t);
 void	setup_floor_color(t_state *state, char **file_text, size_t f, size_t t);
 bool	is_ceil_config(char **file_text, size_t f, size_t t);
 void	setup_ceil_color(t_state *state, char **file_text, size_t f, size_t t);
-char	**setup_split(char **s, char sep, int *cnt);
 bool	is_map_config(char **file_text, size_t f, size_t t);
-void	setup_map_player(t_state *state, char **file_text, size_t f, size_t t);
+void	setup_map(t_state *state, char **file_text, size_t f, size_t t);
 
 //draw
 void	draw_pixel(t_img_data *data, int x, int y, int color);

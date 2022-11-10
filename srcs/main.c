@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 21:20:39 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/09 23:52:56 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/10 23:35:54 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	init_press_keys(t_state *state)
 	state->press_key_down = false;
 	state->press_key_turn_l = false;
 	state->press_key_turn_r = false;
-	state->cur_frame = 0;
 }
 
 void	init_state(t_state *state, int argc, char **argv)
@@ -41,7 +40,8 @@ void	init_state(t_state *state, int argc, char **argv)
 			&state->img.endian);
 	mlx_hook(state->win, 17, 1 << 17, close_all, &state);
 	init_press_keys(state);
-	state->player_pos = make_vector(0, 0);//todo
+	state->builded_map = false;
+	state->cur_frame = 0;
 	setup_config(state, argc, argv);
 }
 
@@ -52,7 +52,7 @@ int	update_frame(t_state	*state)
 	apply_turn(state);
 	try_apply_move(state);
 	draw_view(state);
-	debug_state_info(state);
+	//debug_state_info(state);
 	return (0);
 }
 
