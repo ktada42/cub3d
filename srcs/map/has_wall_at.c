@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:56:13 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/10 23:45:44 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/11 01:46:02 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,7 @@ bool	has_wall_at(t_state *state, t_vector *pos)
 {
 	//todo
 	;
+	(void)state;
+	(void)pos;
 	return (false);
 }

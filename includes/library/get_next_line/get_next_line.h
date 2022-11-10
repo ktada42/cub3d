@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 21:54:34 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/10 23:28:25 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/11 01:48:32 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ typedef struct s_file_state_gnl
 	bool	exist_lf;
 }	t_state_gnl;
 
+
+void	*my_malloc_gnl(size_t type_size, size_t count);
 size_t	ft_strlen_gnl(const char *str);
 char	*ft_strjoin_gnl(char *s1, char *s2, t_state_gnl *state);
 char	*ft_strdup_gnl(const char *s1, t_state_gnl	*state);

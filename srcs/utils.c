@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 17:33:23 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/09 22:16:48 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/11 01:30:10 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,23 @@ bool	starts_with(char *str, char *prefix)
 	return (true);
 }
 
-void	free_2d_array(char **ar)
+
+char	**make_2d_char_array(int h, int w)
+{
+	char	**ret;
+	int		i;
+
+	ret = my_malloc(sizeof(char *), h);
+	i = 0;
+	while (i < h)
+	{
+		ret[i] = my_malloc(sizeof(char), w);
+		i++;
+	}
+	return (ret);
+}
+
+void	free_2d_char_array(char **ar)
 {
 	size_t	h;
 

@@ -12,7 +12,7 @@
 
 #include "../../includes/cub3d.h"
 
-void	setup_color(t_color	**color, char **file_text, size_t f, size_t t)
+static void	setup_color(t_color	**color, char **file_text, size_t f)
 {
 	char	**splited;
 	int		splited_cnt;
@@ -25,15 +25,15 @@ void	setup_color(t_color	**color, char **file_text, size_t f, size_t t)
 	*color = str_to_color(splited[1]);
 	if (!(*color))
 		exit_print(CONFIG_ERR_MSG);
-	free_2d_array(splited);
+	free_2d_char_array(splited);
 }
 
-void	setup_floor_color(t_state *state, char **file_text, size_t f, size_t t)
+void	setup_floor_color(t_state *state, char **file_text, size_t f)
 {
-	setup_color(state->floor_color, file_text, f, t);
+	setup_color(&state->floor_color, file_text, f);
 }
 
-void	setup_ceil_color(t_state *state, char **file_text, size_t f, size_t t)
+void	setup_ceil_color(t_state *state, char **file_text, size_t f)
 {
-	setup_color(state->ceil_color, file_text, f, t);
+	setup_color(&state->ceil_color, file_text, f);
 }

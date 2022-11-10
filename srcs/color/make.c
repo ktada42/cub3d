@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 21:15:16 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/10 23:13:32 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/11 01:29:54 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,6 @@ t_color	*str_to_color(char *str)
 		return (NULL);
 	if (!try_parse_color(rgb[2], &(color->b)))
 		return (NULL);
-	free_2d_array(rgb);
+	free_2d_char_array(rgb);
 	return (color);
 }

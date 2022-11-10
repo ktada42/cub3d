@@ -6,14 +6,14 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 21:33:25 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/11 00:00:49 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/11 01:52:11 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 # include "library/library.h"
-# include "mlx/mlx.h"
+# include <mlx.h>
 # include <stdio.h>
 # include <stdbool.h>
 # include <stdlib.h>
@@ -110,7 +110,7 @@ typedef struct s_state {
 	bool		builded_map;
 	size_t		cur_frame;
 	t_img_data	img;
-	char		map[MAP_MAX_HEIGHT][MAP_MAX_WIDTH];
+	char		**map;
 }	t_state;
 
 //action
@@ -125,17 +125,17 @@ t_color	*make_color(int r, int g, int b);
 bool	is_texture_config(t_state *state, char **file_text, size_t i, size_t j);
 void	parse_texture(t_state *state, char **file_text, size_t i, size_t j);
 bool	is_no_config(char **file_text, size_t f, size_t t);
-void	setup_no_texture(t_state *state, char **file_text, size_t f, size_t t);
+void	setup_no_texture(t_state *state, char **file_text, size_t f);
 bool	is_ea_config(char **file_text, size_t f, size_t t);
-void	setup_ea_texture(t_state *state, char **file_text, size_t f, size_t t);
+void	setup_ea_texture(t_state *state, char **file_text, size_t f);
 bool	is_so_config(char **file_text, size_t f, size_t t);
-void	setup_so_texture(t_state *state, char **file_text, size_t f, size_t t);
+void	setup_so_texture(t_state *state, char **file_text, size_t f);
 bool	is_we_config(char **file_text, size_t f, size_t t);
-void	setup_we_texture(t_state *state, char **file_text, size_t f, size_t t);
+void	setup_we_texture(t_state *state, char **file_text, size_t f);
 bool	is_floor_config(char **file_text, size_t f, size_t t);
-void	setup_floor_color(t_state *state, char **file_text, size_t f, size_t t);
+void	setup_floor_color(t_state *state, char **file_text, size_t f);
 bool	is_ceil_config(char **file_text, size_t f, size_t t);
-void	setup_ceil_color(t_state *state, char **file_text, size_t f, size_t t);
+void	setup_ceil_color(t_state *state, char **file_text, size_t f);
 bool	is_map_config(char **file_text, size_t f, size_t t);
 void	setup_map(t_state *state, char **file_text, size_t f, size_t t);
 
@@ -157,15 +157,16 @@ void	strcpy_2d_wrap(char **dst, char **src, size_t f, size_t t);
 //utils.c
 void		debug_state_info(t_state *state);
 bool		starts_with(char *str, char *prefix);
-void		free_2d_array(char **ar);
+void		free_2d_char_array(char **ar);
 void		fill(char **dst, size_t height, size_t width, char v);
 
 //malloc.c
 void		*my_malloc(size_t type_size, size_t count);
+char		**make_2d_char_array(int h, int w);
 
 //map
 bool		has_wall_at(t_state *state, t_vector *pos);
-void		check_valid_map(t_state *state, char **file_text, size_t f, size_t t);
+void		check_valid_map(char **file_text, size_t f, size_t t);
 void		set_player_start_position(char **file_text, size_t f, size_t t, t_grid_pos *pos);
 void		setup_config(t_state *state, int argc, char **argv);
 
