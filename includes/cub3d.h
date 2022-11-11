@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 21:33:25 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/11 19:22:34 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/11 23:03:38 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 
 # define DEBUG 1
 # define DEBUG_KEY 1
+# define EPS 0.001f
+# define EPS_THETA 0.000001f
 
 //todo サイズを変える
 # define WIDTH 800
@@ -30,7 +32,7 @@
 # define MAP_WIDTH 480
 # define MAP_HEIGHT 360
 //todo
-# define CELL_SIZE 32
+# define WALL_SIZE 32
 # define DEFAULT_BG_COLOR 0x0
 
 # define MAP_MAX_HEIGHT 500
@@ -89,6 +91,12 @@ typedef struct s_img_data {
 	int		endian;
 }	t_img_data;
 
+typedef struct s_ray_hit_info{
+	//wall_texture 
+	double		screen_magnification;
+	t_vector	*hit_pos;
+}	t_ray_hit_info;
+
 typedef struct s_state {
 	void		*mlx;
 	void		*win;
@@ -119,6 +127,10 @@ void	apply_turn(t_state	*state);
 //color
 t_color	*str_to_color(char *str);
 t_color	*make_color(int r, int g, int b);
+int		col_to_i(t_color *col);
+int		make_color_i(int r, int g, int b);
+t_color	*i_to_col(int color_int);
+
 
 //config
 bool	is_texture_config(t_state *state, char **file_text, size_t i, size_t j);
@@ -146,9 +158,9 @@ void	print_map(char	**s, size_t h, size_t w);
 void	deb(char *s);
 
 //draw
-void	draw_pixel(t_img_data *data, int x, int y, int color);
+void	draw_pixel_i(t_img_data *data, int x, int y, int color);
+void	draw_pixel_color(t_img_data *data, int x, int y, t_color *color);
 void	draw_view(t_state *state);
-void	init_canvas(t_state *state);
 
 //get_coordinate
 t_vector	*cell_top_left(size_t h, size_t w);
@@ -171,7 +183,8 @@ void		*my_malloc(size_t type_size, size_t count);
 char		**make_2d_char_array(int h, int w);
 
 //map
-bool		has_wall_at(t_state *state, t_vector *pos);
+bool		has_wall_at_strict(t_state *state, double x, double y);
+bool		has_wall_at_near(t_state *state, t_vector *pos);
 bool		is_too_big_map(char **file_text, size_t f, size_t t);
 void		check_valid_map(char **file_text, size_t f, size_t t);
 void		set_player_start_position(char **file_text, size_t f, size_t t, t_grid_pos *pos);
@@ -181,6 +194,8 @@ void		setup_config(t_state *state, int argc, char **argv);
 double		normalize_theta(double theta);
 double		deg_to_theta(double deg);
 double		theta_to_deg(double theta);
+double		equal_theta(double theta1, double theta2);
+double		ft_abs(double v);
 
 //frame
 //update_frame.c
@@ -216,6 +231,7 @@ t_vector	*rotate(t_vector *vec, double theta);
 t_vector	*make_vector(double x, double y);
 void		copy_vector(t_vector *dst, t_vector *src);
 double		length(t_vector	*vec);
+double		distance(t_vector	*lhs, t_vector *rhs);
 t_vector	*normalize_vector(t_vector *vec);
 
 

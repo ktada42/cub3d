@@ -5,6 +5,7 @@ SRCS =  \
 		srcs/action/try_move.c \
 		srcs/action/turn.c \
 		srcs/color/make.c \
+		srcs/color/convert.c \
 		srcs/config/check_valid_map_utils.c \
 		srcs/config/check_valid_map.c \
 		srcs/config/is_color_config.c \
@@ -18,7 +19,6 @@ SRCS =  \
 		srcs/debug/print.c \
 		srcs/draw/draw_map.c \
 		srcs/draw/draw_pixel.c \
-		srcs/draw/init_canvas.c \
 		srcs/key/is_move_key.c \
 		srcs/key/is_turn_key.c \
 		srcs/key/key_handler.c \
@@ -47,7 +47,7 @@ LIB_DIR = ./includes/library
 $(NAME): $(OBJS)
 	clear
 	@$(MAKE) -C $(LIB_DIR)
-	@$(MAKE) -C $(MLX_DIR)
+	@$(MAKE) -C $(MLX_DIR) 2> /dev/null
 	@$(CC) $(OBJS) $(LIB) -Lmlx -L/usr/X11R6/lib  -lmlx -lX11 -lXext -framework OpenGL -framework AppKit -o $(NAME)
 
 clean:

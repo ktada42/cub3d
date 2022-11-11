@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:42:51 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/10 23:08:36 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/11 22:31:41 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	try_apply_move(t_state	*state)
 	t_vector	*moved_pos;
 
 	moved_pos = get_moved_pos(state);
-	if (!has_wall_at(state, moved_pos))
+	if (!has_wall_at_near(state, moved_pos))
 		copy_vector(state->player_pos, moved_pos);
 	free(moved_pos);
 }

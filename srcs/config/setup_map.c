@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 17:50:34 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/11 19:38:59 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/11 22:26:05 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ static void	set_start_position(t_state *state, \
 	start = my_malloc(sizeof(t_grid_pos), 1);
 	set_player_start_position(file_text, f, t, start);
 	state->player_pos = cell_top_left(start->h, start->w);
-	state->player_pos->x += (double)CELL_SIZE / 2;
-	state->player_pos->y += (double)CELL_SIZE / 2;
+	state->player_pos->x += (double)WALL_SIZE / 2;
+	state->player_pos->y += (double)WALL_SIZE / 2;
 	free(start);
 }
 

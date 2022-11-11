@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 21:20:39 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/11 04:47:17 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/11 20:28:07 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,4 @@ void	init_state(t_state *state, int argc, char **argv)
 		&state->img.bits_per_pixel, &state->img.line_length, \
 			&state->img.endian);
 	mlx_hook(state->win, 17, 1 << 17, close_all, &state);
-	exit(1);
 }

@@ -1,37 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   theta.c                                            :+:      :+:    :+:   */
+/*   convert.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/16 18:45:43 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/11 23:04:26 by ktada            ###   ########.fr       */
+/*   Created: 2022/11/09 21:15:16 by ktada             #+#    #+#             */
+/*   Updated: 2022/11/11 20:18:42 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-double	normalize_theta(double theta)
+t_color	*i_to_col(int color_int)
 {
-	while (theta < -M_PI * 2)
-		theta += M_PI * 2;
-	while (theta > M_PI * 2)
-		theta -= M_PI * 2;
-	return (theta);
+	t_color	*ret;
+
+	ret = my_malloc(sizeof(t_color), 1);
+	ret->b = (color_int >> 0) & 0xFF;
+	ret->g = (color_int >> 8) & 0xFF;
+	ret->r = (color_int >> 16) & 0xFF;
+	return (ret);
 }
 
-double	deg_to_theta(double deg)
+int	make_color_i(int r, int g, int b)
 {
-	return (normalize_theta(M_PI * (deg / 180)));
+	return (r << 16 | g << 8 | b);
 }
 
-double	theta_to_deg(double theta)
+int	col_to_i(t_color *col)
 {
-	return (180 * (normalize_theta(theta) / M_PI));
-}
-
-double	equal_theta(double theta1, double theta2)
-{
-	return (ft_abs(theta1 - theta2) < EPS_THETA);
+	return (col->r << 16 | col->g << 8 | col->b);
 }
