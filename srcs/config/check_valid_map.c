@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 17:50:34 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/11 04:18:01 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/11 19:20:05 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	set_player_start_position(char **file_text, \
 // 111
 static bool	is_surrounded_wall(char **map, int cur_h, int cur_w)
 {
-	printf("curh %d, curw %d\n", cur_h, cur_w);
 	if (map[cur_h][cur_w] == ' ' || map[cur_h][cur_w] == '\0')
 		return (false);
 	map[cur_h][cur_w] = '1';
@@ -82,7 +81,6 @@ static bool	player_surrounded_wall(char **file_text, size_t f, size_t t)
 	deb("buf");
 	print_map(buf, MAP_MAX_HEIGHT + 2, MAP_MAX_WIDTH + 2);
 	valid = is_surrounded_wall(buf, start->h + 1, start->w + 1);
-	valid = true;
 	free(start);
 	free_2d_char_array(buf);
 	return (valid);
@@ -95,6 +93,8 @@ bool	has_only_one_player(char **file_text, size_t f, size_t t)
 
 void	check_valid_map(char **file_text, size_t f, size_t t)
 {
+	if (is_too_big_map(file_text, f, t))
+		exit_print(CONFIG_ERR_MSG);
 	if (!has_only_one_player(file_text, f, t))
 		exit_print(CONFIG_ERR_MSG);
 	if (!player_surrounded_wall(file_text, f, t))

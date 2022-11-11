@@ -5,6 +5,7 @@ SRCS =  \
 		srcs/action/try_move.c \
 		srcs/action/turn.c \
 		srcs/color/make.c \
+		srcs/config/check_valid_map_utils.c \
 		srcs/config/check_valid_map.c \
 		srcs/config/is_color_config.c \
 		srcs/config/is_map_config.c \

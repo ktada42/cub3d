@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 17:37:30 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/11 04:36:32 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/11 19:07:06 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,11 @@ void	print_state(t_state *state)
 
 void	print_map(char	**s, size_t h, size_t w)
 {
-	(void)s;
-	(void)h;
-	(void)w;
-	return ;
-/*	size_t	i;	
+	size_t	i;	
 	size_t	j;	
 
+	if (MAP_MAX_HEIGHT > 30)
+		return ;
 	i = 0;
 	printf("------map---------\n");
 	while (i < h)
@@ -63,7 +61,7 @@ void	print_map(char	**s, size_t h, size_t w)
 		printf("\n");
 		i++;
 	}
-	printf("------map---------\n");*/
+	printf("------map---------\n");
 }
 
 void	deb(char *s)

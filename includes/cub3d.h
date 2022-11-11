@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 21:33:25 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/11 04:36:40 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/11 19:22:34 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,6 +172,7 @@ char		**make_2d_char_array(int h, int w);
 
 //map
 bool		has_wall_at(t_state *state, t_vector *pos);
+bool		is_too_big_map(char **file_text, size_t f, size_t t);
 void		check_valid_map(char **file_text, size_t f, size_t t);
 void		set_player_start_position(char **file_text, size_t f, size_t t, t_grid_pos *pos);
 void		setup_config(t_state *state, int argc, char **argv);

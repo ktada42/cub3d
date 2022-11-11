@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_coordinate.c                                   :+:      :+:    :+:   */
+/*   check_valid_map_utils.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/06 18:56:13 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/11 19:27:23 by ktada            ###   ########.fr       */
+/*   Created: 2022/11/07 17:50:34 by ktada             #+#    #+#             */
+/*   Updated: 2022/11/11 19:20:47 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-t_vector	*cell_top_left(size_t h, size_t w)
+bool	is_too_big_map(char **file_text, size_t f, size_t t)
 {
-	t_vector	*ret;
+	size_t	i;
 
-	ret = make_vector(w * CELL_SIZE, h * CELL_SIZE);
-	return (ret);
+	if (t - f > MAP_MAX_HEIGHT)
+		return (true);
+	i = f;
+	while (i < t)
+	{
+		if (ft_strlen(file_text[i]) > MAP_MAX_WIDTH)
+			return (true);
+		i++;
+	}
+	return (false);
 }

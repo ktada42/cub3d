@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 22:49:49 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/11 04:40:35 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/11 19:10:09 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,7 @@ void	strcpy_2d_wrap(char **dst, char **src, size_t f, size_t t)
 		j = 0;
 		while (src[i][j])
 		{
-			printf("i,j %zu,%zu\n",i,j);
-			dst[i - f + 1][j] = src[i][j];
+			dst[i - f + 1][j + 1] = src[i][j];
 			j++;
 		}
 		i++;
