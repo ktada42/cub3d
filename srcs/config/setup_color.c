@@ -18,13 +18,13 @@ static void	setup_color(t_color	**color, char **file_text, size_t f)
 	int		splited_cnt;
 
 	if (*color)
-		exit_print(CONFIG_ERR_MSG);
+		exit_print("color setting duplicate");
 	splited = ft_split(file_text[f], ' ', &splited_cnt);
 	if (splited_cnt != 2)
-		exit_print(CONFIG_ERR_MSG);
+		exit_print("color setting arg invalid");
 	*color = str_to_color(splited[1]);
 	if (!(*color))
-		exit_print(CONFIG_ERR_MSG);
+		exit_print("color setting color code invalid");
 	free_2d_char_array(splited);
 }
 

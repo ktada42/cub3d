@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 17:50:34 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/11 19:20:05 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/11 19:35:52 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,9 @@ bool	has_only_one_player(char **file_text, size_t f, size_t t)
 void	check_valid_map(char **file_text, size_t f, size_t t)
 {
 	if (is_too_big_map(file_text, f, t))
-		exit_print(CONFIG_ERR_MSG);
+		exit_print("too big map");
 	if (!has_only_one_player(file_text, f, t))
-		exit_print(CONFIG_ERR_MSG);
+		exit_print("has not only one player");
 	if (!player_surrounded_wall(file_text, f, t))
-		exit_print(CONFIG_ERR_MSG);
+		exit_print("player not surrounded wall");
 }

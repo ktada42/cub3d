@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 17:50:34 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/11 03:20:08 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/11 19:39:49 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,10 @@ static void	setup_texture(char **path_ptr, char **file_text, size_t f)
 	int		splited_cnt;
 
 	if (*path_ptr)
-	{
-		deb("a");
-		exit_print(CONFIG_ERR_MSG);
-	}
+		exit_print("duplicate texture setting");
 	splited = ft_split(file_text[f], ' ', &splited_cnt);
 	if (splited_cnt != 2)
-	{
-		deb("b");
-		exit_print(CONFIG_ERR_MSG);
-	}
+		exit_print("text setting arg invalid");
 	*path_ptr = ft_strdup(splited[1]);
 	free_2d_char_array(splited);
 }

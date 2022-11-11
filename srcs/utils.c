@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 17:33:23 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/11 04:17:33 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/11 19:35:15 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	exit_print(char *mes)
 {
-	ft_printf(mes);
+	ft_printf(CONFIG_ERR_MSG);
+	ft_printf(": %s\n", mes);
 	exit(1);
 }
 

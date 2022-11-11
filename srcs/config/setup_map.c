@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 17:50:34 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/11 19:26:38 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/11 19:38:59 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	check_last_config(t_state *state)
 		|| !state->ceil_color \
 		|| state->builded_map \
 		)
-		exit_print(CONFIG_ERR_MSG);
+		exit_print("map config must placed last");
 }
 
 static void	set_start_position(t_state *state, \
