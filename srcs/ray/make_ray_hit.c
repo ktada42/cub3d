@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 22:33:58 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/12 18:04:22 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/12 20:50:20 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static	void	set_hit_wall_texture(t_state *state, t_ray_hit *res, \
 	}
 	else
 	{
-		if (deg_to_rad(90) <= ray_rad && deg_to_rad(270))
+		if (deg_to_rad(90) <= ray_rad && ray_rad <= deg_to_rad(270))
 			res->wall_texture = state->we_wall_texture;
 		else
 			res->wall_texture = state->ea_wall_texture;
