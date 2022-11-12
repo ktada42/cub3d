@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 22:33:58 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/12 18:17:38 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/12 20:43:48 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ t_ray_hit	*get_ray_hit_horizontal(t_state *state, \
 
 	if (angle_almost_horizontal(ray_rad))
 		return (NULL);
+	//todo　最初から縁に立っている時
 	first_delta = get_first_delta(state, player, ray_rad);
 	res = solve(state, player, ray_rad, first_delta);
 	free(first_delta);
