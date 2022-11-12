@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kkohki <kkohki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 17:33:23 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/11 19:35:15 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/12 10:54:54 by kkohki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	exit_print(char *mes)
 {
-	ft_printf(CONFIG_ERR_MSG);
-	ft_printf(": %s\n", mes);
+	printf(CONFIG_ERR_MSG);
+	printf(": %s\n", mes);
 	exit(1);
 }
 

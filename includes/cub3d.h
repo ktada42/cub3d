@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kkohki <kkohki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 21:33:25 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/11 23:03:38 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/12 10:57:46 by kkohki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,6 +186,7 @@ char		**make_2d_char_array(int h, int w);
 bool		has_wall_at_strict(t_state *state, double x, double y);
 bool		has_wall_at_near(t_state *state, t_vector *pos);
 bool		is_too_big_map(char **file_text, size_t f, size_t t);
+void		check_arg(int argc, char **argv);
 void		check_valid_map(char **file_text, size_t f, size_t t);
 void		set_player_start_position(char **file_text, size_t f, size_t t, t_grid_pos *pos);
 void		setup_config(t_state *state, int argc, char **argv);

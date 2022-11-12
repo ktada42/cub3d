@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup_config.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kkohki <kkohki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 17:50:34 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/11 19:38:36 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/12 10:59:13 by kkohki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void	setup_config(t_state *state, int argc, char **argv)
 
 	if (argc != 2)
 		exit_print("arg must 2\n");
+	check_arg(argc,argv);
 	deb("setup_config");
 	file_text = get_all_line_without_nl(argv[1]);
 	i = 0;

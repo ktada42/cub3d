@@ -1,6 +1,7 @@
 NAME = cub3d
 
 CC = gcc
+
 SRCS =  \
 		srcs/action/try_move.c \
 		srcs/action/turn.c \
@@ -25,6 +26,7 @@ SRCS =  \
 		srcs/map/get_coordinate.c \
 		srcs/map/has_wall_at.c \
 		srcs/math/theta.c \
+		srcs/math/utils.c \
 		srcs/string/str_cnt.c \
 		srcs/string/utils.c \
 		srcs/utils/malloc.c \
