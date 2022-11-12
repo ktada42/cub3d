@@ -3,51 +3,67 @@
 /*                                                        :::      ::::::::   */
 /*   get_ray_hit_horizontal.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kkohki <kkohki@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 22:33:58 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/12 10:25:08 by kkohki           ###   ########.fr       */
+/*   Updated: 2022/11/12 18:17:38 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-static bool	angle_almost_horizontal(double ray_angle)
+static bool	angle_almost_horizontal(double ray_rad)
 {
-	if (equal_angle(ray_angle, 0) || equal_angle(ray_angle, M_PI))
-		return (true);
+	return (equal_rad(ray_rad, 0) || equal_rad(ray_rad, M_PI));
 }
 
-static	t_ray_hit_info	*solve(t_state *state, \
-	t_vector *player, double ray_angle, t_vector *first_delta)
+static	t_ray_hit	*solve(t_state *state, \
+	t_vector *player, double ray_rad, t_vector *first_delta)
 {
+	t_vector		*delta;
+	t_vector		*cur;
+
+	delta = scalar_mul(first_delta, WALL_SIZE / first_delta->y);
+	cur = add(player, first_delta);
+	while (!has_wall_at_near(state, cur))
+	{
+		add_assign(cur, delta);
+	}
+	return (make_ray_hit(state, cur, true, ray_rad));
 }
 
+//
+//
+//
 //下がプラス
 static t_vector	*get_first_delta(t_state *state, \
-	t_vector *player, double ray_angle)
+	t_vector *player, double ray_rad)
 {
-	double	delta_x;
-	double	delta_y;
+	double	top_dis;
+	double	down_dis;
 
-	if (ray_angle < M_PI)
-		delta_y = -fmod(player->y, WALL_SIZE);
+	top_dis = fmod(player->y, WALL_SIZE);
+	down_dis = WALL_SIZE - top_dis;
+	if (equal_rad(ray_rad, deg_to_rad(90)))
+		return (make_vector(0, -top_dis));
+	else if (equal_rad(ray_rad, deg_to_rad(270)))
+		return (make_vector(0, down_dis));
+	else if (ray_rad < deg_to_rad(180))
+		return (make_vector(calc_x(top_dis, ray_rad), -top_dis));
 	else
-		delta_y = WALL_SIZE - fmod(player->y, WALL_SIZE);
-	delta_x = delta_y / tan(ray_angle);
-	return (make_vector(delta_x, delta_y));
+		return (make_vector(calc_x(-down_dis, ray_rad), down_dis));
 }
 
-t_ray_hit_info	*get_ray_hit_horizontal(t_state *state, \
-	t_vector *player, double ray_angle)
+t_ray_hit	*get_ray_hit_horizontal(t_state *state, \
+	t_vector *player, double ray_rad)
 {
-	t_vector		*first_delta;
-	t_ray_hit_info	*res;
+	t_vector	*first_delta;
+	t_ray_hit	*res;
 
-	if (angle_almost_horizontal(ray_angle))
+	if (angle_almost_horizontal(ray_rad))
 		return (NULL);
-	first_delta = get_first_delta(state, player, ray_angle);
-	res = solve(state, player, ray_angle, first_delta);
+	first_delta = get_first_delta(state, player, ray_rad);
+	res = solve(state, player, ray_rad, first_delta);
 	free(first_delta);
 	return (res);
 }

@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:48:55 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/10 23:47:13 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/12 17:44:28 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ t_vector	*scalar_div(t_vector *lhs, double r)
 	return (make_vector(lhs->x / r, lhs->y / r));
 }
 
-t_vector	*rotate(t_vector *vec, double theta)
+t_vector	*rotate(t_vector *vec, double rad)
 {
-	return (make_vector(cos(theta) * vec->x - sin(theta) * vec->y, \
-						sin(theta) * vec->x + cos(theta) * vec->y));
+	return (make_vector(cos(rad) * vec->x - sin(rad) * vec->y, \
+						sin(rad) * vec->x + cos(rad) * vec->y));
 }

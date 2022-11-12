@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kkohki <kkohki@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 17:50:34 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/12 13:22:04 by kkohki           ###   ########.fr       */
+/*   Updated: 2022/11/12 17:44:28 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,13 @@ static void	set_start_angle(t_state *state, \
 	char **file_text, size_t f, size_t t)
 {
 	if (ft_str_cnt_set_2d(file_text, f, t, "E"))
-		state->player_angle = deg_to_theta(0);
+		state->player_angle = deg_to_rad(0);
 	else if (ft_str_cnt_set_2d(file_text, f, t, "N"))
-		state->player_angle = deg_to_theta(90);
+		state->player_angle = deg_to_rad(90);
 	else if (ft_str_cnt_set_2d(file_text, f, t, "W"))
-		state->player_angle = deg_to_theta(180);
+		state->player_angle = deg_to_rad(180);
 	else if (ft_str_cnt_set_2d(file_text, f, t, "S"))
-		state->player_angle = deg_to_theta(270);
+		state->player_angle = deg_to_rad(270);
 	else
 		exit_print("set_start_angle code bug error\n");
 }

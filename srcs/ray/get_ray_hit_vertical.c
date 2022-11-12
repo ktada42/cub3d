@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   turn.c                                             :+:      :+:    :+:   */
+/*   get_ray_hit_vertical.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/06 18:42:51 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/12 17:44:28 by ktada            ###   ########.fr       */
+/*   Created: 2022/11/11 22:33:58 by ktada             #+#    #+#             */
+/*   Updated: 2022/11/12 18:06:56 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	apply_turn(t_state	*state)
+t_ray_hit	*get_ray_hit_vertical(t_state *state, \
+	t_vector *player, double ray_rad)
 {
-	if (state->press_key_turn_l)
-		state->player_angle -= TURN_RATE;
-	if (state->press_key_turn_r)
-		state->player_angle += TURN_RATE;
-	state->player_angle = normalize_rad(state->player_angle);
+	(void)state;
+	(void)player;
+	(void)ray_rad;
+	return (NULL);
 }

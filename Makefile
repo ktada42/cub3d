@@ -28,10 +28,16 @@ SRCS =  \
 		srcs/map/has_wall_at.c \
 		srcs/math/theta.c \
 		srcs/math/utils.c \
+		srcs/ray/get_ray_hit_horizontal.c \
+		srcs/ray/get_ray_hit_vertical.c \
+		srcs/ray/get_ray_hit.c \
+		srcs/ray/make_ray_hit.c \
+		srcs/ray/ray_hit_utils.c \
 		srcs/string/str_cnt.c \
 		srcs/string/utils.c \
 		srcs/utils/malloc.c \
 		srcs/vector/calc.c \
+		srcs/vector/calc_assign.c \
 		srcs/vector/length.c \
 		srcs/vector/make.c \
 		srcs/vector/normalize.c \

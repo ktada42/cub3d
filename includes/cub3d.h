@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kkohki <kkohki@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 21:33:25 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/12 14:53:41 by kkohki           ###   ########.fr       */
+/*   Updated: 2022/11/12 18:09:26 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@
 # define MAP_WIDTH 480
 # define MAP_HEIGHT 360
 //todo
+# define FOV_DEG 60
+# define PLANE_DIS 1
 # define WALL_SIZE 32
 # define DEFAULT_BG_COLOR 0x0
 
@@ -95,11 +97,11 @@ typedef struct s_img_data {
 	int		endian;
 }	t_img_data;
 
-typedef struct s_ray_hit_info{
-	//wall_texture 
+typedef struct s_ray_hit{
+	void		*wall_texture;
 	double		screen_magnification;
 	t_vector	*hit_pos;
-}	t_ray_hit_info;
+}	t_ray_hit;
 
 typedef struct s_state {
 	void		*mlx;
@@ -129,59 +131,59 @@ typedef struct s_state {
 }	t_state;
 
 //action
-void	try_apply_move(t_state	*state);
-void	apply_turn(t_state	*state);
+void		try_apply_move(t_state	*state);
+void		apply_turn(t_state	*state);
 
 //color
-t_color	*str_to_color(char *str);
-t_color	*make_color(int r, int g, int b);
-int		col_to_i(t_color *col);
-int		make_color_i(int r, int g, int b);
-t_color	*i_to_col(int color_int);
-
+t_color		*str_to_color(char *str);
+t_color		*make_color(int r, int g, int b);
+int			col_to_i(t_color *col);
+int			make_color_i(int r, int g, int b);
+t_color		*i_to_col(int color_int);
 
 //config
-bool	is_texture_config(t_state *state, char **file_text, size_t i, size_t j);
-void	parse_texture(t_state *state, char **file_text, size_t i, size_t j);
-bool	is_no_config(char **file_text, size_t f, size_t t);
-size_t	setup_no_texture(t_state *state, char **file_text, size_t f);
-bool	is_ea_config(char **file_text, size_t f, size_t t);
-size_t	setup_ea_texture(t_state *state, char **file_text, size_t f);
-bool	is_so_config(char **file_text, size_t f, size_t t);
-size_t	setup_so_texture(t_state *state, char **file_text, size_t f);
-bool	is_we_config(char **file_text, size_t f, size_t t);
-size_t	setup_we_texture(t_state *state, char **file_text, size_t f);
-bool	is_floor_config(char **file_text, size_t f, size_t t);
-size_t	setup_floor_color(t_state *state, char **file_text, size_t f);
-bool	is_ceil_config(char **file_text, size_t f, size_t t);
-size_t	setup_ceil_color(t_state *state, char **file_text, size_t f);
-bool	is_map_config(char **file_text, size_t f, size_t t);
-size_t	setup_map(t_state *state, char **file_text, size_t f, size_t t);
-bool	is_blank_line(char **file_text, size_t i);
-size_t	get_next_blank_line(char **file_text, size_t i);
+bool		is_texture_config(t_state *state, \
+				char **file_text, size_t i, size_t j);
+void		parse_texture(t_state *state, char **file_text, size_t i, size_t j);
+bool		is_no_config(char **file_text, size_t f, size_t t);
+size_t		setup_no_texture(t_state *state, char **file_text, size_t f);
+bool		is_ea_config(char **file_text, size_t f, size_t t);
+size_t		setup_ea_texture(t_state *state, char **file_text, size_t f);
+bool		is_so_config(char **file_text, size_t f, size_t t);
+size_t		setup_so_texture(t_state *state, char **file_text, size_t f);
+bool		is_we_config(char **file_text, size_t f, size_t t);
+size_t		setup_we_texture(t_state *state, char **file_text, size_t f);
+bool		is_floor_config(char **file_text, size_t f, size_t t);
+size_t		setup_floor_color(t_state *state, char **file_text, size_t f);
+bool		is_ceil_config(char **file_text, size_t f, size_t t);
+size_t		setup_ceil_color(t_state *state, char **file_text, size_t f);
+bool		is_map_config(char **file_text, size_t f, size_t t);
+size_t		setup_map(t_state *state, char **file_text, size_t f, size_t t);
+bool		is_blank_line(char **file_text, size_t i);
+size_t		get_next_blank_line(char **file_text, size_t i);
 
 //debug
-void	print_state(t_state *state);
-void	print_map(char	**s, size_t h, size_t w);
-void	deb(char *s);
+void		print_state(t_state *state);
+void		print_map(char	**s, size_t h, size_t w);
+void		deb(char *s);
 
 //draw
-void	draw_pixel_i(t_img_data *data, int x, int y, int color);
-void	draw_pixel_color(t_img_data *data, int x, int y, t_color *color);
-void	draw_view(t_state *state);
+void		draw_pixel_i(t_img_data *data, int x, int y, int color);
+void		draw_pixel_color(t_img_data *data, int x, int y, t_color *color);
+void		draw_view(t_state *state);
 
 //image
-void	allocate_image(t_state *state);
+void		allocate_image(t_state *state);
 
 //get_coordinate
 t_vector	*cell_top_left(size_t h, size_t w);
 
 //string
-int		ft_str_cnt(char *s, char c);
-int		ft_str_cnt_set(char *s, char *set);
-int		ft_str_cnt_set_2d(char **s, size_t f, size_t t, char *set);
-void	strcpy_2d(char **dst, char **src, size_t f, size_t t);
-void	strcpy_2d_wrap(char **dst, char **src, size_t f, size_t t);
+int			ft_str_cnt(char *s, char c);
+int			ft_str_cnt_set(char *s, char *set);
+int			ft_str_cnt_set_2d(char **s, size_t f, size_t t, char *set);
+void		strcpy_2d(char **dst, char **src, size_t f, size_t t);
+void		strcpy_2d_wrap(char **dst, char **src, size_t f, size_t t);
 
 //utils.c
 void		debug_state_info(t_state *state);
@@ -199,15 +201,28 @@ bool		has_wall_at_near(t_state *state, t_vector *pos);
 bool		is_too_big_map(char **file_text, size_t f, size_t t);
 void		check_arg(int argc, char **argv);
 void		check_valid_map(char **file_text, size_t f, size_t t);
-void		set_player_start_position(char **file_text, size_t f, size_t t, t_grid_pos *pos);
+void		set_player_start_position(char **file_text, \
+									size_t f, size_t t, t_grid_pos *pos);
 void		setup_config(t_state *state, int argc, char **argv);
 
 //math
-double		normalize_theta(double theta);
-double		deg_to_theta(double deg);
-double		theta_to_deg(double theta);
-double		equal_theta(double theta1, double theta2);
+double		normalize_rad(double rad);
+double		deg_to_rad(double deg);
+double		rad_to_deg(double rad);
+double		equal_rad(double rad1, double rad2);
+double		calc_x(double y, double rad);
 double		ft_abs(double v);
+
+//ray
+t_vector	*get_ray_hit(t_state *state, t_vector *player, double ray_angle);
+void		free_ray_hit(t_ray_hit *ray_hit);
+t_ray_hit	*make_ray_hit(t_state *state, t_vector *hit_pos, \
+	bool is_horizontal_query, double ray_rad);
+t_ray_hit	*get_ray_hit_horizontal(t_state *state, \
+	t_vector *player, double ray_rad);
+t_ray_hit	*get_ray_hit_vertical(t_state *state, \
+	t_vector *player, double ray_rad);
+
 
 //frame
 //update_frame.c
@@ -232,20 +247,25 @@ int			handle_key_down(int keycode, t_state *state);
 int			handle_key_up(int keycode, t_state *state);
 
 //utils.c
-void 		exit_print(char *mes);
+void		exit_print(char *mes);
 
 //vector
 t_vector	*add(t_vector *lhs, t_vector *rhs);
 t_vector	*sub(t_vector *lhs, t_vector *rhs);
 t_vector	*scalar_mul(t_vector *lhs, double r);
 t_vector	*scalar_div(t_vector *lhs, double r);
-t_vector	*rotate(t_vector *vec, double theta);
+
+void		add_assign(t_vector *lhs, t_vector *rhs);
+void		sub_assign(t_vector *lhs, t_vector *rhs);
+void		scalar_mul_assign(t_vector *lhs, double r);
+void		scalar_div_assign(t_vector *lhs, double r);
+
+t_vector	*rotate(t_vector *vec, double rad);
 t_vector	*make_vector(double x, double y);
 void		copy_vector(t_vector *dst, t_vector *src);
 double		length(t_vector	*vec);
 double		distance(t_vector	*lhs, t_vector *rhs);
 t_vector	*normalize_vector(t_vector *vec);
-
 
 int			close_all(int keycode, t_state *state);
 void		init_state(t_state *state, int argc, char **argv);
