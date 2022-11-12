@@ -6,7 +6,7 @@
 /*   By: kkohki <kkohki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 21:33:25 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/12 12:45:18 by kkohki           ###   ########.fr       */
+/*   Updated: 2022/11/12 14:53:41 by kkohki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,10 @@ typedef struct s_state {
 	char		*path_ea_texture;
 	char		*path_so_texture;
 	char		*path_we_texture;
+	void		*no_wall_texture;
+	void		*ea_wall_texture;
+	void		*so_wall_texture;
+	void		*we_wall_texture;
 	bool		press_key_left;
 	bool		press_key_up;
 	bool		press_key_right;
@@ -165,6 +169,9 @@ void	deb(char *s);
 void	draw_pixel_i(t_img_data *data, int x, int y, int color);
 void	draw_pixel_color(t_img_data *data, int x, int y, t_color *color);
 void	draw_view(t_state *state);
+
+//image
+void	allocate_image(t_state *state);
 
 //get_coordinate
 t_vector	*cell_top_left(size_t h, size_t w);

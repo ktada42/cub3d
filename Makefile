@@ -20,6 +20,7 @@ SRCS =  \
 		srcs/debug/print.c \
 		srcs/draw/draw_map.c \
 		srcs/draw/draw_pixel.c \
+		srcs/image/load_texture.c \
 		srcs/key/is_move_key.c \
 		srcs/key/is_turn_key.c \
 		srcs/key/key_handler.c \
@@ -37,7 +38,7 @@ SRCS =  \
 		srcs/init_state.c \
 		srcs/main.c \
 		srcs/utils.c \
-	
+
 OBJS = $(SRCS:%.c=%.o)
 MLX_DIR = mlx
 LIB = ./includes/library/library.a
@@ -67,6 +68,9 @@ all : $(NAME)
 
 bonus : $(NAME)
 
+ok1:
+	./cub3d test_files/ok_map/simple_map.cub
+	
 re: fclean all
 
 .PHONY: all  clean fclean re bonus

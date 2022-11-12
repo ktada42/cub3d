@@ -6,7 +6,7 @@
 /*   By: kkohki <kkohki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 17:50:34 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/12 13:20:50 by kkohki           ###   ########.fr       */
+/*   Updated: 2022/11/12 15:06:53 by kkohki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ void	setup_config(t_state *state, int argc, char **argv)
 		i = setup_config_part(state, file_text, i);
 	}
 	free_2d_char_array(file_text);
+	allocate_image(state);
 	if (!state->builded_map)
 		exit_print("has no map\n");
 }
