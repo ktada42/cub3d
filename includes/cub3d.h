@@ -6,7 +6,7 @@
 /*   By: kkohki <kkohki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 21:33:25 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/12 10:57:46 by kkohki           ###   ########.fr       */
+/*   Updated: 2022/11/12 12:45:18 by kkohki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@
 # define EPS 0.001f
 # define EPS_THETA 0.000001f
 
+# define RED "\x1b[31m"
+# define RESET "\x1b[0m"
+# define GREEN "\x1b[32m"
+# define CYAN "\x1b[36m"
 //todo サイズを変える
 # define WIDTH 800
 # define HEIGHT 600
