@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_handler.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kkohki <kkohki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 18:15:30 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/06 20:05:58 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/12 13:36:36 by kkohki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	set_turn_valid(int keycode, t_state *state, bool is_valid)
 int	handle_key_down(int keycode, t_state *state)
 {
 	if (DEBUG_KEY)
-		ft_printf("key_down : %d \n", keycode);
+		printf("key_down : %d \n", keycode);
 	if (keycode == KEY_ESC)
 		close_all(keycode, state);
 	else if (is_move_key(keycode))
@@ -58,7 +58,7 @@ int	handle_key_down(int keycode, t_state *state)
 int	handle_key_up(int keycode, t_state *state)
 {
 	if (DEBUG_KEY)
-		ft_printf("key_up %d \n", keycode);
+		printf("key_up %d \n", keycode);
 	if (is_move_key(keycode))
 		set_move_valid(keycode, state, false);
 	else if (is_turn_key(keycode))
