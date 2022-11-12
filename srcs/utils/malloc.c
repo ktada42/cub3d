@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   malloc.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kkohki <kkohki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 13:38:50 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/11 01:30:04 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/12 10:26:17 by kkohki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	*my_malloc(size_t type_size, size_t count)
 	buf = malloc(type_size * count);
 	if (!buf)
 	{
-		//ft_printf("Error\n");
 		perror("malloc");
 		exit(1);
 	}

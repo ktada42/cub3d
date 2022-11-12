@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_pos_ray_hits.c                                 :+:      :+:    :+:   */
+/*   get_ray_hits.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kkohki <kkohki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 22:33:58 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/11 22:56:53 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/12 10:19:32 by kkohki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-
 t_ray_hit_info	*get_ray_hit_horizontal(t_state *state, \
 	t_vector *player, double ray_angle)
 {
 	if (angle_almost_horizontal)
-	return (NULL);
+		return (NULL);
 }
+
 //壁のテクスチャや倍率を一緒に返すのもあり
 t_vector	*get_ray_hit(t_state *state, t_vector *player, double ray_angle)
 {

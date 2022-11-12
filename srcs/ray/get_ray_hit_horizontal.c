@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_ray_hit_horizontal.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kkohki <kkohki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 22:33:58 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/11 23:21:34 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/12 10:25:08 by kkohki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ static bool	angle_almost_horizontal(double ray_angle)
 static	t_ray_hit_info	*solve(t_state *state, \
 	t_vector *player, double ray_angle, t_vector *first_delta)
 {
-	
 }
 
 //下がプラス
