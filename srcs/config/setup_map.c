@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kkohki <kkohki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 17:50:34 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/11 22:26:05 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/12 13:22:04 by kkohki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	check_last_config(t_state *state)
 		|| !state->ceil_color \
 		|| state->builded_map \
 		)
-		exit_print("map config must placed last");
+		exit_print("map config must placed last\n");
 }
 
 static void	set_start_position(t_state *state, \
@@ -50,7 +50,7 @@ static void	set_start_angle(t_state *state, \
 	else if (ft_str_cnt_set_2d(file_text, f, t, "S"))
 		state->player_angle = deg_to_theta(270);
 	else
-		exit_print("set_start_angle code bug error");
+		exit_print("set_start_angle code bug error\n");
 }
 
 static void	set_map(t_state *state, char **file_text, size_t f, size_t t)

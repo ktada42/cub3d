@@ -6,7 +6,7 @@
 /*   By: kkohki <kkohki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 17:50:34 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/12 12:31:14 by kkohki           ###   ########.fr       */
+/*   Updated: 2022/11/12 13:20:50 by kkohki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static size_t	setup_config_part(t_state *state, \
 	else if (is_map_config(file_text, f, map_end_line))
 		return (setup_map(state, file_text, f, map_end_line));
 	else
-		exit_print("has invalid setting part");
+		exit_print("has invalid setting part\n");
 	return (-1);
 }
 
@@ -92,5 +92,5 @@ void	setup_config(t_state *state, int argc, char **argv)
 	}
 	free_2d_char_array(file_text);
 	if (!state->builded_map)
-		exit_print("has no map");
+		exit_print("has no map\n");
 }

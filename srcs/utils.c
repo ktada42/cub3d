@@ -6,7 +6,7 @@
 /*   By: kkohki <kkohki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 17:33:23 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/12 12:45:30 by kkohki           ###   ########.fr       */
+/*   Updated: 2022/11/12 13:06:17 by kkohki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	exit_print(char *mes)
 	printf(CONFIG_ERR_MSG);
 	printf(RESET);
 	printf(CYAN);
-	printf(": %s\n", mes);
+	printf(": %s", mes);
 	printf(RESET);
 	exit(1);
 }
