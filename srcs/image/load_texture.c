@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kkohki <kkohki@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 17:37:30 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/12 15:12:05 by kkohki           ###   ########.fr       */
+/*   Updated: 2022/11/12 15:35:19 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,10 @@ void	allocate_image(t_state *state)
 {
 	int	tile_size;
 
-	debug_state_info(state);
+	printf("no {%s}\n", state->path_no_texture);
+	printf("ea {%s}\n", state->path_ea_texture);
+	printf("so {%s}\n", state->path_so_texture);
+	printf("we {%s}\n", state->path_we_texture);
 	tile_size = WALL_SIZE;
 	state->no_wall_texture = mlx_xpm_file_to_image(state->mlx, \
 		state->path_no_texture, &tile_size, &tile_size);
