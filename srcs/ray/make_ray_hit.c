@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 22:33:58 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/12 20:50:20 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/14 18:27:05 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,5 @@ t_ray_hit	*make_ray_hit(t_state *state, t_vector *hit_pos, \
 	res = my_malloc(sizeof(t_ray_hit), 1);
 	set_hit_wall_texture(state, res, is_horizontal_query, ray_rad);
 	res->hit_pos = make_vector(hit_pos->x, hit_pos->y);
-	res->screen_magnification = \
-		ft_abs(state->player_pos->y - hit_pos->y) / PLANE_DIS;
+	return (res);
 }

@@ -6,25 +6,45 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:56:13 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/11 22:31:41 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/14 18:24:03 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-//画面内である前提で呼ばれる
+//if outside return true
 bool	has_wall_at_strict(t_state *state, double x, double y)
 {
-	return (state-> \
-		map[(size_t)(y / WALL_SIZE)][(size_t)(x / WALL_SIZE)] == '1');
+	t_grid_pos	*pos;
+	bool		res;
+
+	pos = get_grid_pos2(x, y);
+	if (!inside_grid(pos))
+		return (true);
+	res = (state->map[pos->h][pos->w] == '1');
+	free(pos);
+	return (res);
 }
 
+//if out side map, it's return true
 bool	has_wall_at_near(t_state *state, t_vector *pos)
 {
 	return (\
-		has_wall_at_strict(state, pos->x - EPS, pos->y - EPS) || \
-		has_wall_at_strict(state, pos->x - EPS, pos->y + EPS) || \
-		has_wall_at_strict(state, pos->x + EPS, pos->y - EPS) || \
-		has_wall_at_strict(state, pos->x + EPS, pos->y + EPS) \
+		has_wall_at_strict(state, pos->x - EPS_GRID, pos->y - EPS_GRID) || \
+		has_wall_at_strict(state, pos->x - EPS_GRID, pos->y + EPS_GRID) || \
+		has_wall_at_strict(state, pos->x + EPS_GRID, pos->y - EPS_GRID) || \
+		has_wall_at_strict(state, pos->x + EPS_GRID, pos->y + EPS_GRID) \
 	);
+}
+
+bool	inside_map(t_state *state, t_vector *pos)
+{
+	t_grid_pos	*grid_pos;
+	bool		res;
+
+	(void)state;
+	grid_pos = get_grid_pos1(pos);
+	res = inside_grid(grid_pos);
+	free(grid_pos);
+	return (res);
 }

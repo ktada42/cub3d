@@ -5,8 +5,8 @@ CC = gcc
 SRCS =  \
 		srcs/action/try_move.c \
 		srcs/action/turn.c \
-		srcs/color/make.c \
 		srcs/color/convert.c \
+		srcs/color/make.c \
 		srcs/config/check_valid_map_utils.c \
 		srcs/config/check_valid_map.c \
 		srcs/config/is_color_config.c \
@@ -20,6 +20,9 @@ SRCS =  \
 		srcs/debug/print.c \
 		srcs/draw/draw_map.c \
 		srcs/draw/draw_pixel.c \
+		srcs/grid/get_grid_pos.c \
+		srcs/grid/make_grid_pos.c \
+		srcs/grid/utils.c \
 		srcs/image/load_texture.c \
 		srcs/key/is_move_key.c \
 		srcs/key/is_turn_key.c \

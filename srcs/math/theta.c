@@ -36,13 +36,14 @@ double	equal_rad(double rad1, double rad2)
 	return (ft_abs(rad1 - rad2) < EPS_THETA);
 }
 
-double	calc_x(double y, double rad)
+double	get_x_by_y_and_rad(double y, double rad)
 {
 	if (rad == deg_to_rad(90) || \
 		rad == deg_to_rad(270) \
 	)
 	{
-		exit_print("calc_x rad must not 90 || 270\n");
+		exit_print("get_x_by_y_and_rad \
+			rad must not 90 || 270\n");
 	}
 	return (y / tan(rad));
 }

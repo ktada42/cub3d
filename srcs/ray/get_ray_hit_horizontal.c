@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 22:33:58 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/14 17:24:27 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/14 18:24:56 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static bool	angle_almost_horizontal(double ray_rad)
 	return (equal_rad(ray_rad, 0) || equal_rad(ray_rad, M_PI));
 }
 
-static t_vector	*get_delta(t_state *state, t_vector *first_delta, \
+static t_vector	*get_delta(t_vector *first_delta, \
 	double ray_rad)
 {
 	if (first_delta->y != 0)
@@ -31,22 +31,28 @@ static	t_ray_hit	*solve(t_state *state, \
 {
 	t_vector		*delta;
 	t_vector		*cur;
+	t_ray_hit		*hit;
 
-	delta = get_delta(state, first_delta, ray_rad);
+	delta = get_delta(first_delta, ray_rad);
 	cur = add(player, first_delta);
 	while (!has_wall_at_near(state, cur))
 	{
 		add_assign(cur, delta);
 	}
-	return (make_ray_hit(state, cur, true, ray_rad));
+	if (!inside_map(state, cur))
+		hit = NULL;
+	else
+		hit = make_ray_hit(state, cur, true, ray_rad);
+	free(delta);
+	free(cur);
+	return (hit);
 }
 
 //
 //
 //
 //下がプラス
-static t_vector	*get_first_delta(t_state *state, \
-	t_vector *player, double ray_rad)
+static t_vector	*get_first_delta(t_vector *player, double ray_rad)
 {
 	double	top_dis;
 	double	down_dis;
@@ -72,7 +78,7 @@ t_ray_hit	*get_ray_hit_horizontal(t_state *state, \
 	if (angle_almost_horizontal(ray_rad))
 		return (NULL);
 	//todo　最初から縁に立っている時
-	first_delta = get_first_delta(state, player, ray_rad);
+	first_delta = get_first_delta(player, ray_rad);
 	res = solve(state, player, ray_rad, first_delta);
 	free(first_delta);
 	return (res);

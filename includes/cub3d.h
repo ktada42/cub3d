@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 21:33:25 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/14 17:24:27 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/14 18:26:19 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 # define DEBUG 1
 # define DEBUG_KEY 1
-# define EPS 0.001f
+# define EPS_GRID 0.001f
 # define EPS_THETA 0.000001f
 
 # define RED "\x1b[31m"
@@ -37,7 +37,7 @@
 # define MAP_HEIGHT 360
 //todo
 # define FOV_DEG 60
-# define PLANE_DIS 1
+# define PLANE_CELL_SIZE 1
 # define WALL_SIZE 32
 # define DEFAULT_BG_COLOR 0x0
 
@@ -99,7 +99,6 @@ typedef struct s_img_data {
 
 typedef struct s_ray_hit{
 	void		*wall_texture;
-	double		screen_magnification;
 	t_vector	*hit_pos;
 }	t_ray_hit;
 
@@ -172,6 +171,12 @@ void		draw_pixel_i(t_img_data *data, int x, int y, int color);
 void		draw_pixel_color(t_img_data *data, int x, int y, t_color *color);
 void		draw_view(t_state *state);
 
+//grid
+t_grid_pos	*make_grid_pos(int h, int w);
+t_grid_pos	*get_grid_pos1(t_vector *pos);
+t_grid_pos	*get_grid_pos2(double x, double y);
+bool		inside_grid(t_grid_pos *grid_pos);
+
 //image
 void		allocate_image(t_state *state);
 
@@ -204,6 +209,7 @@ void		check_valid_map(char **file_text, size_t f, size_t t);
 void		set_player_start_position(char **file_text, \
 									size_t f, size_t t, t_grid_pos *pos);
 void		setup_config(t_state *state, int argc, char **argv);
+bool		inside_map(t_state *state, t_vector *pos);
 
 //math
 double		normalize_rad(double rad);
@@ -214,7 +220,7 @@ double		get_x_by_y_and_rad(double y, double rad);
 double		ft_abs(double v);
 
 //ray
-t_vector	*get_ray_hit(t_state *state, t_vector *player, double ray_angle);
+t_ray_hit	*get_ray_hit(t_state *state, t_vector *player, double ray_rad);
 void		free_ray_hit(t_ray_hit *ray_hit);
 t_ray_hit	*make_ray_hit(t_state *state, t_vector *hit_pos, \
 	bool is_horizontal_query, double ray_rad);
