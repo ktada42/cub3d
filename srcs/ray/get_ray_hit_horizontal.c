@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 22:33:58 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/12 20:43:48 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/14 17:24:27 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,22 @@ static bool	angle_almost_horizontal(double ray_rad)
 	return (equal_rad(ray_rad, 0) || equal_rad(ray_rad, M_PI));
 }
 
+static t_vector	*get_delta(t_state *state, t_vector *first_delta, \
+	double ray_rad)
+{
+	if (first_delta->y != 0)
+		return (scalar_mul(first_delta, WALL_SIZE / first_delta->y));
+	else
+		return (make_vector(get_x_by_y_and_rad(WALL_SIZE, ray_rad), WALL_SIZE));
+}
+
 static	t_ray_hit	*solve(t_state *state, \
 	t_vector *player, double ray_rad, t_vector *first_delta)
 {
 	t_vector		*delta;
 	t_vector		*cur;
 
-	delta = scalar_mul(first_delta, WALL_SIZE / first_delta->y);
+	delta = get_delta(state, first_delta, ray_rad);
 	cur = add(player, first_delta);
 	while (!has_wall_at_near(state, cur))
 	{
@@ -49,9 +58,9 @@ static t_vector	*get_first_delta(t_state *state, \
 	else if (equal_rad(ray_rad, deg_to_rad(270)))
 		return (make_vector(0, down_dis));
 	else if (ray_rad < deg_to_rad(180))
-		return (make_vector(calc_x(top_dis, ray_rad), -top_dis));
+		return (make_vector(get_x_by_y_and_rad(top_dis, ray_rad), -top_dis));
 	else
-		return (make_vector(calc_x(-down_dis, ray_rad), down_dis));
+		return (make_vector(get_x_by_y_and_rad(-down_dis, ray_rad), down_dis));
 }
 
 t_ray_hit	*get_ray_hit_horizontal(t_state *state, \

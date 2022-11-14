@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 21:33:25 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/12 18:09:26 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/14 17:24:27 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,7 +210,7 @@ double		normalize_rad(double rad);
 double		deg_to_rad(double deg);
 double		rad_to_deg(double rad);
 double		equal_rad(double rad1, double rad2);
-double		calc_x(double y, double rad);
+double		get_x_by_y_and_rad(double y, double rad);
 double		ft_abs(double v);
 
 //ray
@@ -222,7 +222,6 @@ t_ray_hit	*get_ray_hit_horizontal(t_state *state, \
 	t_vector *player, double ray_rad);
 t_ray_hit	*get_ray_hit_vertical(t_state *state, \
 	t_vector *player, double ray_rad);
-
 
 //frame
 //update_frame.c
