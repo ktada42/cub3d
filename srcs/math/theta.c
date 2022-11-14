@@ -33,11 +33,12 @@ double	rad_to_deg(double rad)
 
 double	equal_rad(double rad1, double rad2)
 {
-	return (ft_abs(rad1 - rad2) < EPS_THETA);
+	return (ft_abs(normalize_rad(rad1) - normalize_rad(rad2)) < EPS_THETA);
 }
 
 double	get_x_by_y_and_rad(double y, double rad)
 {
+	rad = normalize_rad(rad);
 	if (rad == deg_to_rad(90) || \
 		rad == deg_to_rad(270) \
 	)

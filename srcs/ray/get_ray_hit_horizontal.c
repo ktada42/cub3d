@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 22:33:58 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/14 22:01:37 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/14 22:26:42 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,12 @@ static t_vector	*get_delta(t_vector *first_delta, \
 		return (scalar_mul(first_delta, WALL_SIZE / ft_abs(first_delta->y)));
 	else
 	{
-		if (0 < ray_rad && ray_rad < deg_to_rad(180))
-			return (make_vector(get_x_by_y_and_rad(WALL_SIZE, ray_rad), -WALL_SIZE));
+		if (is_up_dir(ray_rad))
+			return (make_vector(\
+				get_x_by_y_and_rad(WALL_SIZE, ray_rad), -WALL_SIZE));
 		else
-			return (make_vector(get_x_by_y_and_rad(WALL_SIZE, ray_rad), WALL_SIZE));
+			return (make_vector(\
+				get_x_by_y_and_rad(-WALL_SIZE, ray_rad), WALL_SIZE));
 	}
 }
 

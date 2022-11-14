@@ -36,6 +36,7 @@ srcs/math/utils.c \
 srcs/ray/get_ray_hit.c \
 srcs/ray/get_ray_hit_horizontal.c \
 srcs/ray/get_ray_hit_vertical.c \
+srcs/ray/ray_dir.c \
 srcs/ray/make_ray_hit.c \
 srcs/ray/ray_hit_utils.c \
 srcs/string/str_cnt.c \

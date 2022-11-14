@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 21:33:25 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/14 21:54:02 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/14 22:22:21 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -230,6 +230,10 @@ t_ray_hit	*get_ray_hit_horizontal(t_state *state, \
 	t_vector *player, double ray_rad);
 t_ray_hit	*get_ray_hit_vertical(t_state *state, \
 	t_vector *player, double ray_rad);
+bool		is_up_dir(double ray_rad);
+bool		is_down_dir(double ray_rad);
+bool		is_left_dir(double ray_rad);
+bool		is_right_dir(double ray_rad);
 
 //frame
 //update_frame.c
