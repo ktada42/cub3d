@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 21:33:25 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/15 00:23:50 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/15 01:20:09 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,19 @@
 # define GREEN "\x1b[32m"
 # define CYAN "\x1b[36m"
 //todo サイズを変える
-# define WIDTH 800
-# define HEIGHT 600
+# define WIDTH 1000
+# define HEIGHT 800
 # define MAP_WIDTH 480
 # define MAP_HEIGHT 360
 //todo
 # define FOV_DEG 60
 # define PLANE_CELL_SIZE 1
 # define WALL_SIZE 10
+# define MINIMAP_WALL_SIZE 10
 # define DEFAULT_BG_COLOR 0x0
 
-# define MAP_MAX_HEIGHT 500
-# define MAP_MAX_WIDTH 500
+# define MAP_MAX_HEIGHT 80
+# define MAP_MAX_WIDTH 80
 
 //rate
 # define MOVE_RATE 3
@@ -175,6 +176,9 @@ void		draw_pixel_i(t_img_data *data, int x, int y, int color);
 void		draw_pixel_color(t_img_data *data, int x, int y, t_color *color);
 void		draw_view(t_state *state);
 void		draw_minimap(t_state *state);
+void		minidraw_player(t_state *state, \
+							size_t left, size_t top, size_t size);
+void		minidraw_cell(t_state *state, size_t h, size_t w);
 
 //grid
 t_grid_pos	*make_grid_pos(int h, int w);

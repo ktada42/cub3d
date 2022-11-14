@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 00:23:19 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/15 00:31:44 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/15 01:20:53 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,27 @@
 //右下が(WIDTH, HEIGHT)
 void	draw_minimap(t_state *state)
 {
-	(void)state;
-	int	h = -20;
-	while (h < 21)
+	size_t		grid_h;
+	size_t		grid_w;
+	t_grid_pos	*player_pos;
+
+	grid_h = 0;
+	while (grid_h < MAP_MAX_HEIGHT)
 	{
-		int w = -20;
-		while (w < 21)
+		grid_w = 0;
+		while (grid_w < MAP_MAX_WIDTH)
 		{
-			t_color	*color;
-			color = make_color(255, 0, 0);
-			draw_pixel_color(&state->img, WIDTH / 2 + h, HEIGHT / 2 + w, color);
-			free(color);
-			w ++;
+			minidraw_cell(state, grid_h, grid_w);
+			grid_w++;
 		}
-		h++;
+		grid_h++;
 	}
-	//todo;
+	player_pos = get_grid_pos1(state->player_pos);
+
+	size_t size = MINIMAP_WALL_SIZE;
+	size_t x = WIDTH - MAP_MAX_WIDTH * size - 20;
+	size_t y = 20;
+	x += player_pos->w * size;
+	y += player_pos->h * size;
+	minidraw_player(state, x, y, size);
 }
