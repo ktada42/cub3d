@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 21:33:25 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/14 23:49:06 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/15 00:23:50 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,6 +174,7 @@ void		deb(char *s);
 void		draw_pixel_i(t_img_data *data, int x, int y, int color);
 void		draw_pixel_color(t_img_data *data, int x, int y, t_color *color);
 void		draw_view(t_state *state);
+void		draw_minimap(t_state *state);
 
 //grid
 t_grid_pos	*make_grid_pos(int h, int w);

@@ -19,6 +19,7 @@ srcs/config/setup_map_utils.c \
 srcs/config/setup_texture.c \
 srcs/debug/print.c \
 srcs/draw/draw_view.c \
+srcs/draw/draw_minimap.c \
 srcs/draw/draw_pixel.c \
 srcs/grid/get_grid_pos.c \
 srcs/grid/make_grid_pos.c \

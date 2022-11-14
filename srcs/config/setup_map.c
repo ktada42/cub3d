@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 17:50:34 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/12 17:44:28 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/15 00:22:30 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ static void	set_start_angle(t_state *state, \
 static void	set_map(t_state *state, char **file_text, size_t f, size_t t)
 {
 	state->map = make_2d_char_array(MAP_MAX_HEIGHT, MAP_MAX_WIDTH);
+	fill(state->map, MAP_MAX_HEIGHT, MAP_MAX_WIDTH, ' ');
 	strcpy_2d(state->map, file_text, f, t);
 }
 

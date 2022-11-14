@@ -1,41 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_view.c                                        :+:      :+:    :+:   */
+/*   draw_minimap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/11 21:45:34 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/15 00:23:12 by ktada            ###   ########.fr       */
+/*   Created: 2022/11/15 00:23:19 by ktada             #+#    #+#             */
+/*   Updated: 2022/11/15 00:31:44 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-static void	draw_floor_ceil(t_state *state)
+//左上が(0, 0)
+//右下が(WIDTH, HEIGHT)
+void	draw_minimap(t_state *state)
 {
-	size_t	x;
-	size_t	y;
-
-	x = 0;
-	while (x < WIDTH)
+	(void)state;
+	int	h = -20;
+	while (h < 21)
 	{
-		y = 0;
-		while (y < HEIGHT)
+		int w = -20;
+		while (w < 21)
 		{
-			if (y * 2 <= HEIGHT)
-				draw_pixel_color(&state->img, x, y, state->ceil_color);
-			else
-				draw_pixel_color(&state->img, x, y, state->floor_color);
-			y++;
+			t_color	*color;
+			color = make_color(255, 0, 0);
+			draw_pixel_color(&state->img, WIDTH / 2 + h, HEIGHT / 2 + w, color);
+			free(color);
+			w ++;
 		}
-		x++;
+		h++;
 	}
-}
-
-void	draw_view(t_state *state)
-{
-	draw_floor_ceil(state);
-	draw_minimap(state);
-	mlx_put_image_to_window(state->mlx, state->win, state->img.img, 0, 0);
+	//todo;
 }
