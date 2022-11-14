@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kkohki <kkohki@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 21:20:39 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/12 15:11:30 by kkohki           ###   ########.fr       */
+/*   Updated: 2022/11/14 22:01:51 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,18 @@ int	update_frame(t_state	*state)
 	apply_turn(state);
 	try_apply_move(state);
 	draw_view(state);
+	if (++state->cur_frame % 600 == 0)
+	{
+		printf("playerpos {%f, %f}\n", state->player_pos->x, state->player_pos->y);
+		for (size_t i = 0; i < 360; i+= 15)
+		{
+			t_ray_hit *hit = get_ray_hit(state, state->player_pos, deg_to_rad(i));
+			if (hit == NULL)
+				printf("ray:deg : %zu, hit{NULL}\n",i);
+			else
+				printf("ray:deg : %zu, hit{%f, %f}\n",i, hit->hit_pos->x, hit->hit_pos->y);
+		}
+	}
 	//debug_state_info(state);
 	return (0);
 }

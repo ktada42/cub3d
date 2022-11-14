@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 21:33:25 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/14 18:26:19 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/14 21:54:02 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ typedef struct s_img_data {
 
 typedef struct s_ray_hit{
 	void		*wall_texture;
+	char		*wall_texture_name;
 	t_vector	*hit_pos;
 }	t_ray_hit;
 
@@ -164,6 +165,7 @@ size_t		get_next_blank_line(char **file_text, size_t i);
 //debug
 void		print_state(t_state *state);
 void		print_map(char	**s, size_t h, size_t w);
+void		print_vector(char *mes, t_vector *vec);
 void		deb(char *s);
 
 //draw

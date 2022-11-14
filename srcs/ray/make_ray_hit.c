@@ -6,28 +6,42 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 22:33:58 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/14 18:27:05 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/14 21:36:43 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
+
+//todo テストのためにテクスチャネームを代入しているので消す
 static	void	set_hit_wall_texture(t_state *state, t_ray_hit *res, \
 	bool is_horizontal_query, double ray_rad)
 {
 	if (is_horizontal_query)
 	{
 		if (0 < ray_rad && ray_rad < deg_to_rad(180))
+		{
 			res->wall_texture = state->no_wall_texture;
+			res->wall_texture_name = state->path_no_texture;
+		}
 		else
+		{
 			res->wall_texture = state->so_wall_texture;
+			res->wall_texture_name = state->path_so_texture;
+		}
 	}
 	else
 	{
 		if (deg_to_rad(90) <= ray_rad && ray_rad <= deg_to_rad(270))
+		{
 			res->wall_texture = state->we_wall_texture;
+			res->wall_texture_name = state->path_we_texture;
+		}
 		else
+		{
 			res->wall_texture = state->ea_wall_texture;
+			res->wall_texture_name = state->path_ea_texture;
+		}
 	}
 }
 

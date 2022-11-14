@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kkohki <kkohki@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 17:37:30 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/12 14:42:36 by kkohki           ###   ########.fr       */
+/*   Updated: 2022/11/14 22:02:49 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	print_color(char *mes, t_color	*color)
 
 void	print_vector(char *mes, t_vector *vec)
 {
+	if (1)
+		return ;
 	printf("%s", mes);
 	printf("{x : %f, y : %f}\n", vec->x, vec->y);
 }

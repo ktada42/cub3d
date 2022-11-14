@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:56:13 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/14 18:24:03 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/14 22:06:30 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ bool	inside_map(t_state *state, t_vector *pos)
 	bool		res;
 
 	(void)state;
+	if (pos->x < 0 || pos->y < 0)
+		return (false);
 	grid_pos = get_grid_pos1(pos);
 	res = inside_grid(grid_pos);
 	free(grid_pos);

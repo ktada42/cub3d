@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 22:33:58 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/14 18:24:56 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/14 22:01:37 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,14 @@ static t_vector	*get_delta(t_vector *first_delta, \
 	double ray_rad)
 {
 	if (first_delta->y != 0)
-		return (scalar_mul(first_delta, WALL_SIZE / first_delta->y));
+		return (scalar_mul(first_delta, WALL_SIZE / ft_abs(first_delta->y)));
 	else
-		return (make_vector(get_x_by_y_and_rad(WALL_SIZE, ray_rad), WALL_SIZE));
+	{
+		if (0 < ray_rad && ray_rad < deg_to_rad(180))
+			return (make_vector(get_x_by_y_and_rad(WALL_SIZE, ray_rad), -WALL_SIZE));
+		else
+			return (make_vector(get_x_by_y_and_rad(WALL_SIZE, ray_rad), WALL_SIZE));
+	}
 }
 
 static	t_ray_hit	*solve(t_state *state, \
@@ -34,11 +39,14 @@ static	t_ray_hit	*solve(t_state *state, \
 	t_ray_hit		*hit;
 
 	delta = get_delta(first_delta, ray_rad);
+	print_vector("delta", delta);
 	cur = add(player, first_delta);
 	while (!has_wall_at_near(state, cur))
 	{
 		add_assign(cur, delta);
 	}
+	print_vector("last cur ", cur);
+	
 	if (!inside_map(state, cur))
 		hit = NULL;
 	else
@@ -79,6 +87,7 @@ t_ray_hit	*get_ray_hit_horizontal(t_state *state, \
 		return (NULL);
 	//todo　最初から縁に立っている時
 	first_delta = get_first_delta(player, ray_rad);
+	print_vector("first delta ", first_delta);
 	res = solve(state, player, ray_rad, first_delta);
 	free(first_delta);
 	return (res);
