@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 21:20:39 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/14 22:01:51 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/15 00:05:00 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	update_frame(t_state	*state)
 	if (++state->cur_frame % 600 == 0)
 	{
 		printf("playerpos {%f, %f}\n", state->player_pos->x, state->player_pos->y);
-		for (size_t i = 0; i < 360; i+= 15)
+		for (size_t i = 0; i < 360; i+= 1)
 		{
 			t_ray_hit *hit = get_ray_hit(state, state->player_pos, deg_to_rad(i));
 			if (hit == NULL)

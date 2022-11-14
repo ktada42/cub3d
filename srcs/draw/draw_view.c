@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_map.c                                         :+:      :+:    :+:   */
+/*   draw_view.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 21:45:34 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/11 22:32:46 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/15 00:15:38 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@ static void	draw_floor_ceil(t_state *state)
 void	draw_view(t_state *state)
 {
 	draw_floor_ceil(state);
+	
 	mlx_put_image_to_window(state->mlx, state->win, state->img.img, 0, 0);
 }

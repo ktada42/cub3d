@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 22:33:58 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/14 21:40:43 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/14 23:58:16 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ t_ray_hit	*get_ray_hit(t_state *state, t_vector *player, double ray_rad)
 	if (!horizontal_hit && !vertical_hit)
 	{
 		return (NULL);
-		//todo 本番は下を使う
 		debug_error_message(player, ray_rad);
 	}
 	if (!horizontal_hit)

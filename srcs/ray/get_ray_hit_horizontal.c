@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 22:33:58 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/14 22:26:42 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/14 23:59:07 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ static	t_ray_hit	*solve(t_state *state, \
 	t_ray_hit		*hit;
 
 	delta = get_delta(first_delta, ray_rad);
-	print_vector("delta", delta);
+	//print_vector("delta", delta);
 	cur = add(player, first_delta);
 	while (!has_wall_at_near(state, cur))
 	{
 		add_assign(cur, delta);
 	}
-	print_vector("last cur ", cur);
+	//print_vector("last cur ", cur);
 	
 	if (!inside_map(state, cur))
 		hit = NULL;
@@ -89,7 +89,7 @@ t_ray_hit	*get_ray_hit_horizontal(t_state *state, \
 		return (NULL);
 	//todo　最初から縁に立っている時
 	first_delta = get_first_delta(player, ray_rad);
-	print_vector("first delta ", first_delta);
+	//print_vector("first delta ", first_delta);
 	res = solve(state, player, ray_rad, first_delta);
 	free(first_delta);
 	return (res);

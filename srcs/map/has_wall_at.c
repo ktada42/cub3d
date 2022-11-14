@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:56:13 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/14 22:06:30 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/14 23:49:12 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ bool	has_wall_at_strict(t_state *state, double x, double y)
 	t_grid_pos	*pos;
 	bool		res;
 
+	if (x < 0 || y < 0)
+		return (true);
 	pos = get_grid_pos2(x, y);
 	if (!inside_grid(pos))
 		return (true);
@@ -29,6 +31,8 @@ bool	has_wall_at_strict(t_state *state, double x, double y)
 //if out side map, it's return true
 bool	has_wall_at_near(t_state *state, t_vector *pos)
 {
+	if (pos->x < 0 || pos->y < 0)
+		return (true);
 	return (\
 		has_wall_at_strict(state, pos->x - EPS_GRID, pos->y - EPS_GRID) || \
 		has_wall_at_strict(state, pos->x - EPS_GRID, pos->y + EPS_GRID) || \

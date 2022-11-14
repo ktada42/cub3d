@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 21:33:25 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/14 22:22:21 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/14 23:49:06 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 //todo
 # define FOV_DEG 60
 # define PLANE_CELL_SIZE 1
-# define WALL_SIZE 32
+# define WALL_SIZE 10
 # define DEFAULT_BG_COLOR 0x0
 
 # define MAP_MAX_HEIGHT 500
@@ -128,6 +128,8 @@ typedef struct s_state {
 	size_t		cur_frame;
 	t_img_data	img;
 	char		**map;
+	int			map_grid_height;
+	int			map_grid_width;
 }	t_state;
 
 //action
@@ -219,6 +221,7 @@ double		deg_to_rad(double deg);
 double		rad_to_deg(double rad);
 double		equal_rad(double rad1, double rad2);
 double		get_x_by_y_and_rad(double y, double rad);
+double		get_y_by_x_and_rad(double x, double rad);
 double		ft_abs(double v);
 
 //ray

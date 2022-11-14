@@ -31,7 +31,7 @@ bool	is_down_dir(double ray_rad)
 		printf("is_down_dir(%f) must not call !!bug!!", ray_rad);
 		exit_print("");
 	}
-	return (ray_rad > deg_to_rad(180));
+	return (!is_up_dir(ray_rad));
 }
 
 bool	is_left_dir(double ray_rad)
@@ -42,7 +42,7 @@ bool	is_left_dir(double ray_rad)
 		printf("is_left_dir(%f) must not call !!bug!!", ray_rad);
 		exit_print("");
 	}
-	return (ray_rad < deg_to_rad(90) || ray_rad > deg_to_rad(270));
+	return (deg_to_rad(90) < ray_rad && ray_rad < deg_to_rad(270));
 }
 
 bool	is_right_dir(double ray_rad)
@@ -53,5 +53,5 @@ bool	is_right_dir(double ray_rad)
 		printf("is_right_dir(%f) must not call !!bug!!", ray_rad);
 		exit_print("");
 	}
-	return (ray_rad > deg_to_rad(90) && ray_rad < deg_to_rad(270));
+	return (!is_left_dir(ray_rad));
 }

@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 17:37:30 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/14 22:02:49 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/14 23:06:58 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	print_color(char *mes, t_color	*color)
 
 void	print_vector(char *mes, t_vector *vec)
 {
-	if (1)
+	if (0)
 		return ;
 	printf("%s", mes);
 	printf("{x : %f, y : %f}\n", vec->x, vec->y);
