@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:56:13 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/14 23:49:12 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/15 13:45:35 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ bool	has_wall_at_near(t_state *state, t_vector *pos)
 	if (pos->x < 0 || pos->y < 0)
 		return (true);
 	return (\
-		has_wall_at_strict(state, pos->x - EPS_GRID, pos->y - EPS_GRID) || \
-		has_wall_at_strict(state, pos->x - EPS_GRID, pos->y + EPS_GRID) || \
-		has_wall_at_strict(state, pos->x + EPS_GRID, pos->y - EPS_GRID) || \
-		has_wall_at_strict(state, pos->x + EPS_GRID, pos->y + EPS_GRID) \
+		has_wall_at_strict(state, pos->x - EPS_POS, pos->y - EPS_POS) || \
+		has_wall_at_strict(state, pos->x - EPS_POS, pos->y + EPS_POS) || \
+		has_wall_at_strict(state, pos->x + EPS_POS, pos->y - EPS_POS) || \
+		has_wall_at_strict(state, pos->x + EPS_POS, pos->y + EPS_POS) \
 	);
 }
 

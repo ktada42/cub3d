@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 22:33:58 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/14 23:59:07 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/15 13:51:25 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,11 @@ static t_vector	*get_delta(t_vector *first_delta, \
 		return (scalar_mul(first_delta, WALL_SIZE / ft_abs(first_delta->y)));
 	else
 	{
-		if (is_up_dir(ray_rad))
+		if (normalize_rad(ray_rad) == deg_to_rad(90))
+			return (make_vector(0, -WALL_SIZE));
+		else if (normalize_rad(ray_rad) == deg_to_rad(270))
+			return (make_vector(0, WALL_SIZE));
+		else if (is_up_dir(ray_rad))
 			return (make_vector(\
 				get_x_by_y_and_rad(WALL_SIZE, ray_rad), -WALL_SIZE));
 		else
@@ -67,6 +71,7 @@ static t_vector	*get_first_delta(t_vector *player, double ray_rad)
 	double	top_dis;
 	double	down_dis;
 
+	//printf("get_first_delta\n");
 	top_dis = fmod(player->y, WALL_SIZE);
 	down_dis = WALL_SIZE - top_dis;
 	if (equal_rad(ray_rad, deg_to_rad(90)))

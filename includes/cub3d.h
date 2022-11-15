@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 21:33:25 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/15 01:20:09 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/15 13:53:02 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 # define DEBUG 1
 # define DEBUG_KEY 1
-# define EPS_GRID 0.001f
+# define EPS_POS 0.0001f
 # define EPS_THETA 0.000001f
 
 # define RED "\x1b[31m"
@@ -46,7 +46,7 @@
 # define MAP_MAX_WIDTH 80
 
 //rate
-# define MOVE_RATE 3
+# define MOVE_RATE 0.5
 # define TURN_RATE 0.015
 # define UPDATE_INTERVAL 1
 
@@ -228,6 +228,7 @@ double		equal_rad(double rad1, double rad2);
 double		get_x_by_y_and_rad(double y, double rad);
 double		get_y_by_x_and_rad(double x, double rad);
 double		ft_abs(double v);
+bool		equal_pos(double a, double b);
 
 //ray
 t_ray_hit	*get_ray_hit(t_state *state, t_vector *player, double ray_rad);

@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 23:02:39 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/14 22:55:24 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/15 13:46:02 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,9 @@ double	get_y_by_x_and_rad(double x, double rad)
 			rad must not 90 || 270\n");
 	}
 	return (x * tan(rad));
+}
+
+bool	equal_pos(double a, double b)
+{
+	return (ft_abs(a - b) < EPS_POS);
 }
