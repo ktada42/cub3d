@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 21:33:25 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/15 13:53:02 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/15 14:46:57 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,14 @@
 # define PLANE_CELL_SIZE 1
 # define WALL_SIZE 10
 # define MINIMAP_WALL_SIZE 10
+# define MINIMAP_OFFSET 20
 # define DEFAULT_BG_COLOR 0x0
 
 # define MAP_MAX_HEIGHT 80
 # define MAP_MAX_WIDTH 80
 
 //rate
-# define MOVE_RATE 0.5
+# define MOVE_RATE 0.1
 # define TURN_RATE 0.015
 # define UPDATE_INTERVAL 1
 
@@ -176,9 +177,10 @@ void		draw_pixel_i(t_img_data *data, int x, int y, int color);
 void		draw_pixel_color(t_img_data *data, int x, int y, t_color *color);
 void		draw_view(t_state *state);
 void		draw_minimap(t_state *state);
-void		minidraw_player(t_state *state, \
-							size_t left, size_t top, size_t size);
+void		minidraw_player(t_state *state, size_t h, size_t w);
 void		minidraw_cell(t_state *state, size_t h, size_t w);
+void		minidraw_floor(t_state *state, size_t h, size_t w);
+void		minidraw_wall(t_state *state, size_t h, size_t w);
 
 //grid
 t_grid_pos	*make_grid_pos(int h, int w);
