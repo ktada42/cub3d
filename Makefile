@@ -18,11 +18,12 @@ srcs/config/setup_map.c \
 srcs/config/setup_map_utils.c \
 srcs/config/setup_texture.c \
 srcs/debug/print.c \
-srcs/draw/draw_view.c \
+srcs/draw/draw_column.c \
 srcs/draw/draw_minimap.c \
 srcs/draw/draw_pixel.c \
+srcs/draw/draw_view.c \
+srcs/draw/draw_view_utils.c \
 srcs/draw/minidraw_cell.c \
-srcs/draw/draw_column.c \
 srcs/grid/get_grid_pos.c \
 srcs/grid/make_grid_pos.c \
 srcs/grid/utils.c \
@@ -39,8 +40,8 @@ srcs/math/utils.c \
 srcs/ray/get_ray_hit.c \
 srcs/ray/get_ray_hit_horizontal.c \
 srcs/ray/get_ray_hit_vertical.c \
-srcs/ray/ray_dir.c \
 srcs/ray/make_ray_hit.c \
+srcs/ray/ray_dir.c \
 srcs/ray/ray_hit_utils.c \
 srcs/string/str_cnt.c \
 srcs/string/utils.c \
@@ -48,10 +49,10 @@ srcs/utils.c \
 srcs/utils/malloc.c \
 srcs/vector/calc.c \
 srcs/vector/calc_assign.c \
-srcs/vector/rotate.c \
 srcs/vector/length.c \
 srcs/vector/make.c \
 srcs/vector/normalize.c \
+srcs/vector/rotate.c \
 
 OBJS = $(SRCS:%.c=%.o)
 MLX_DIR = mlx

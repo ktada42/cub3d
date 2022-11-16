@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 22:33:58 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/16 16:27:09 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/16 19:39:34 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,15 @@ static	t_ray_hit	*solve(t_state *state, \
 	t_ray_hit		*hit;
 
 	delta = get_delta(first_delta, ray_rad);
-	if (state->debug_ray_hit)
-		print_vector("delta", delta);
+	/*if (state->debug_ray_hit)
+		print_vector("delta", delta);*/
 	cur = add(player, first_delta);
 	while (!has_wall_at_near(state, cur))
 	{
 		add_assign(cur, delta);
 	}
-	if (state->debug_ray_hit)
-		print_vector("last cur ", cur);
+	/*if (state->debug_ray_hit)
+		print_vector("last cur ", cur);*/
 	if (!inside_map(state, cur))
 		hit = NULL;
 	else
@@ -91,17 +91,17 @@ t_ray_hit	*get_ray_hit_horizontal(t_state *state, \
 	t_vector	*first_delta;
 	t_ray_hit	*res;
 
-	if (state->debug_ray_hit)
+	/*if (state->debug_ray_hit)
 	{
 		printf("ray_hit_horizontal:\n");
 		printf("ray_rad : %f\n", ray_rad);
-	}
+	}*/
 	if (angle_almost_horizontal(ray_rad))
 		return (NULL);
 	//todo　最初から縁に立っている時
 	first_delta = get_first_delta(player, ray_rad);
-	if (state->debug_ray_hit)
-		print_vector("first delta ", first_delta);
+	/*if (state->debug_ray_hit)
+		print_vector("first delta ", first_delta);*/
 	res = solve(state, player, ray_rad, first_delta);
 	free(first_delta);
 	return (res);

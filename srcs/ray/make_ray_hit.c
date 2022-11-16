@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 22:33:58 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/15 21:19:22 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/16 21:50:21 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,28 +19,16 @@ static	void	set_hit_wall_texture(t_state *state, t_ray_hit *res, \
 	if (is_horizontal_query)
 	{
 		if (is_up_dir(ray_rad))
-		{
-			res->wall_texture = state->no_wall_texture;
-			res->wall_dir = "no";
-		}
+			res->wall_texture = &state->no_wall_texture;
 		else
-		{
-			res->wall_texture = state->so_wall_texture;
-			res->wall_dir = "so";
-		}
+			res->wall_texture = &state->so_wall_texture;
 	}
 	else
 	{
 		if (is_left_dir(ray_rad))
-		{
-			res->wall_texture = state->we_wall_texture;
-			res->wall_dir = "we";
-		}
+			res->wall_texture = &state->we_wall_texture;
 		else
-		{
-			res->wall_texture = state->ea_wall_texture;
-			res->wall_dir = "ea";
-		}
+			res->wall_texture = &state->ea_wall_texture;
 	}
 }
 

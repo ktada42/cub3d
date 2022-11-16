@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 21:20:39 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/12 15:38:51 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/16 21:24:07 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,11 @@ void	init_state(t_state *state, int argc, char **argv)
 	setup_config(state, argc, argv);
 	print_state(state);
 	state->mlx = mlx_init();
-	allocate_image(state);
 	state->win = mlx_new_window(state->mlx, WIDTH, HEIGHT, "cub3d");
 	state->img.img = mlx_new_image(state->mlx, WIDTH, HEIGHT);
 	state->img.addr = mlx_get_data_addr(state->img.img, \
 		&state->img.bits_per_pixel, &state->img.line_length, \
 			&state->img.endian);
+	load_textures(state);
 	mlx_hook(state->win, 17, 1 << 17, close_all, &state);
 }

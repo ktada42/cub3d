@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 21:33:25 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/16 18:14:31 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/16 22:17:11 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,16 +97,17 @@ typedef struct s_img_data {
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	int		width;
+	int		height;
 }	t_img_data;
 
 typedef struct s_ray_hit{
-	void		*wall_texture;
-	char		*wall_dir;//debug用
+	t_img_data	*wall_texture;
 	t_vector	*hit_pos;
 }	t_ray_hit;
 
 typedef struct s_state {
-	bool		debug_ray_hit;//todo 消す
+//	bool		debug_ray_hit;//todo 消す
 	void		*mlx;
 	void		*win;
 	t_color		*floor_color;
@@ -115,10 +116,10 @@ typedef struct s_state {
 	char		*path_ea_texture;
 	char		*path_so_texture;
 	char		*path_we_texture;
-	void		*no_wall_texture;
-	void		*ea_wall_texture;
-	void		*so_wall_texture;
-	void		*we_wall_texture;
+	t_img_data	no_wall_texture;
+	t_img_data	ea_wall_texture;
+	t_img_data	so_wall_texture;
+	t_img_data	we_wall_texture;
 	bool		press_key_left;
 	bool		press_key_up;
 	bool		press_key_right;
@@ -185,6 +186,10 @@ void		minidraw_floor(t_state *state, size_t h, size_t w);
 void		minidraw_wall(t_state *state, size_t h, size_t w);
 void		draw_column(t_state *state, \
 			t_ray_hit *ray_hit, size_t w, double magnification);
+t_vector	*get_to_column(t_state *state, size_t w);
+double		calc_magnification(t_vector *to_cell, t_vector *ray_hit_pos);
+void		set_ray_hits(t_state *state);
+
 
 //grid
 t_grid_pos	*make_grid_pos(int h, int w);
@@ -193,7 +198,8 @@ t_grid_pos	*get_grid_pos2(double x, double y);
 bool		inside_grid(t_grid_pos *grid_pos);
 
 //image
-void		allocate_image(t_state *state);
+void		load_textures(t_state *state);
+size_t		get_pixel_color(t_img_data *img, int x, int y);
 
 //get_coordinate
 t_vector	*cell_top_left(size_t h, size_t w);

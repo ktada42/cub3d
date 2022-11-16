@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 22:33:58 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/16 16:08:56 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/16 19:39:49 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,12 @@ static	t_ray_hit	*solve(t_state *state, \
 		add_assign(cur, delta);
 		//print_vector("add", cur);
 	}
-	if (state->debug_ray_hit)
+	/*if (state->debug_ray_hit)
 	{
 		print_vector("first_delta", first_delta);
 		print_vector("delta", delta);
 		print_vector("last cur ", cur);
-	}
+	}*/
 	if (!inside_map(state, cur))
 		hit = NULL;
 	else
@@ -95,8 +95,8 @@ t_ray_hit	*get_ray_hit_vertical(t_state *state, \
 	t_vector	*first_delta;
 	t_ray_hit	*res;
 
-	if (state->debug_ray_hit)
-		printf("ray_hit_vertical:\n");
+	/*if (state->debug_ray_hit)
+		printf("ray_hit_vertical:\n");*/
 	if (angle_almost_vertical(ray_rad))
 		return (NULL);
 	//todo　最初から縁に立っている時
