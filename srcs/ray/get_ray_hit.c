@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 22:33:58 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/16 15:42:38 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/16 18:07:36 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,17 @@ t_ray_hit	*get_ray_hit(t_state *state, t_vector *player, double ray_rad)
 	horizontal_hit = get_ray_hit_horizontal(state, player, ray_rad);
 	vertical_hit = get_ray_hit_vertical(state, player, ray_rad);
 	if (!horizontal_hit && !vertical_hit)
-	{
 		debug_error_message(player, ray_rad);
-	}
 	if (!horizontal_hit)
 		return (vertical_hit);
 	if (!vertical_hit)
 		return (horizontal_hit);
+	if (ft_abs(distance(player, horizontal_hit->hit_pos) - \
+		distance(player, vertical_hit->hit_pos)) < EPS_POS)
+		{
+		printf("AAAAAAAAAAAAAAA!");
+		state->debug_ray_hit = 1;
+		}
 	if (distance(player, horizontal_hit->hit_pos) < \
 		distance(player, vertical_hit->hit_pos))
 	{

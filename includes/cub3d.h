@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 21:33:25 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/16 17:26:27 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/16 18:09:36 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,7 @@ typedef struct s_state {
 	char		**map;
 	int			map_grid_height;
 	int			map_grid_width;
+	t_ray_hit	*column_ray_hits[WIDTH];
 }	t_state;
 
 //action

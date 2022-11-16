@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 01:11:55 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/15 14:20:38 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/16 17:45:48 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ static void	minidraw_square(\
 		y = 0;
 		while (y < MINIMAP_WALL_SIZE)
 		{
-			draw_pixel_color(&state->img, left_x + x, top_y + y, col);
+			draw_pixel_i(&state->img, left_x + x, top_y + y, \
+							col_to_i(col) | 0xFF000000);
 			y++;
 		}
 		x++;
@@ -62,4 +63,3 @@ void	minidraw_player(t_state *state, size_t h, size_t w)
 	minidraw_square(state, h, w, col);
 	free(col);
 }
-
