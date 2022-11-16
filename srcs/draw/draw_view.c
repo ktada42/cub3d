@@ -6,12 +6,11 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 21:45:34 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/16 18:10:47 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/16 18:36:15 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-
 
 static void	draw_floor_ceil(t_state *state)
 {
@@ -59,13 +58,44 @@ static double	calc_magnification(t_vector *to_cell, t_vector *ray_hit_pos)
 	return (length(ray_hit_pos) / length(to_cell));
 }
 
+static void	set_ray_hits(t_state *state)
+{
+	size_t		w;
+	t_vector	*to_cell;
+
+	w = 0;
+	while (w < WIDTH)
+	{
+		to_cell = get_to_column(state, w);
+		state->ray_hits[w] = get_ray_hit(state, state->player_pos, \
+								atan2(-to_cell->y, to_cell->x));
+		free(to_cell);
+		w++;
+	}
+	w = 0;
+	while (w + 2 < WIDTH)
+	{
+		if (state->ray_hits[w]->wall_texture != \
+			state->ray_hits[w + 1]->wall_texture && \
+			state->ray_hits[w]->wall_texture == \
+			state->ray_hits[w + 2]->wall_texture \
+		)
+		{
+			state->ray_hits[w + 1]->wall_texture = \
+				state->ray_hits[w]->wall_texture;
+			state->ray_hits[w + 1]->wall_dir = state->ray_hits[w]->wall_dir;
+		}
+		w++;
+	}
+}
+
 static void	draw_raycasting_map(t_state *state)
 {
 	size_t		w;
 	t_vector	*to_cell;
-	t_ray_hit	*ray_hit;
 	t_vector	*to_ray_hit;
 
+	set_ray_hits(state);
 	w = 0;
 	while (w < WIDTH)
 	{
@@ -73,29 +103,15 @@ static void	draw_raycasting_map(t_state *state)
 			state->debug_ray_hit = 1;
 		else
 			state->debug_ray_hit = 0;
+		to_ray_hit = sub(state->ray_hits[w]->hit_pos, state->player_pos);
 		to_cell = get_to_column(state, w);
-		ray_hit = get_ray_hit(state, state->player_pos, \
-								atan2(-to_cell->y, to_cell->x));
-		to_ray_hit = sub(ray_hit->hit_pos, state->player_pos);
-		if (state->debug_ray_hit)
-		{
-			double ang = atan2(-(to_cell->y - state->player_pos->y), to_cell->x - state->player_pos->x);
-			printf("\n");
-			print_vector("hit_pos", ray_hit->hit_pos);
-			print_vector("player", state->player_pos);
-			print_vector("to_cell", to_cell);
-			printf("ray_ang %f", ang);
-			print_vector("to_ray_hit", to_ray_hit);
-		}
-		else
-			state->debug_ray_hit = 0;
-		draw_column(state, ray_hit, w, \
+		draw_column(state, state->ray_hits[w], w, \
 			calc_magnification(to_cell, to_ray_hit));
-		free(to_cell);	
-		free_ray_hit(ray_hit);
+		free(to_cell);
+		free_ray_hit(state->ray_hits[w]);
 		free(to_ray_hit);
 		w++;
-	}	
+	}
 }
 
 void	draw_view(t_state *state)
