@@ -14,7 +14,7 @@
 
 double	normalize_rad(double rad)
 {
-	while (rad < -M_PI * 2)
+	while (rad < 0)
 		rad += M_PI * 2;
 	while (rad > M_PI * 2)
 		rad -= M_PI * 2;

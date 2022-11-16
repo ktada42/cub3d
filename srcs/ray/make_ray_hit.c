@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 22:33:58 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/14 23:02:47 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/15 21:19:22 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ static	void	set_hit_wall_texture(t_state *state, t_ray_hit *res, \
 		if (is_up_dir(ray_rad))
 		{
 			res->wall_texture = state->no_wall_texture;
-			res->wall_texture_name = state->path_no_texture;
+			res->wall_dir = "no";
 		}
 		else
 		{
 			res->wall_texture = state->so_wall_texture;
-			res->wall_texture_name = state->path_so_texture;
+			res->wall_dir = "so";
 		}
 	}
 	else
@@ -34,12 +34,12 @@ static	void	set_hit_wall_texture(t_state *state, t_ray_hit *res, \
 		if (is_left_dir(ray_rad))
 		{
 			res->wall_texture = state->we_wall_texture;
-			res->wall_texture_name = state->path_we_texture;
+			res->wall_dir = "we";
 		}
 		else
 		{
 			res->wall_texture = state->ea_wall_texture;
-			res->wall_texture_name = state->path_ea_texture;
+			res->wall_dir = "ea";
 		}
 	}
 }

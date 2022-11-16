@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 22:33:58 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/15 14:46:53 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/16 15:42:38 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ t_ray_hit	*get_ray_hit(t_state *state, t_vector *player, double ray_rad)
 	t_ray_hit	*horizontal_hit;
 	t_ray_hit	*vertical_hit;
 
+	ray_rad = normalize_rad(ray_rad);
 	horizontal_hit = get_ray_hit_horizontal(state, player, ray_rad);
 	vertical_hit = get_ray_hit_vertical(state, player, ray_rad);
 	if (!horizontal_hit && !vertical_hit)

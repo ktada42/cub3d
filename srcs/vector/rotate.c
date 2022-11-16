@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   turn.c                                             :+:      :+:    :+:   */
+/*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/06 18:42:51 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/15 22:33:27 by ktada            ###   ########.fr       */
+/*   Created: 2022/11/16 17:10:30 by ktada             #+#    #+#             */
+/*   Updated: 2022/11/16 17:15:39 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	apply_turn(t_state	*state)
+t_vector	*rotate(t_vector *vec, double rad)
 {
-	if (state->press_key_turn_l)
-		state->player_angle += TURN_RATE;
-	if (state->press_key_turn_r)
-		state->player_angle -= TURN_RATE;
-	state->player_angle = normalize_rad(state->player_angle);
+	return (make_vector(cos(rad) * vec->x - sin(rad) * vec->y, \
+						sin(rad) * vec->x + cos(rad) * vec->y));
+}
+
+void	set_rotate(t_vector *vec, double rad)
+{
+	t_vector	*rotated;
+
+	rotated = rotate(vec, rad);
+	copy_vector(vec, rotated);
+	free(rotated);
 }

@@ -3,12 +3,13 @@ SO ./textures/collectible.xpm
 WE ./textures/exit.xpm
 EA ./textures/player3.xpm
 
-F 85,107,255
-C 30,144,255
+F 255,255,255
+C 0,0,0
 
 11111
-10011
-11S01
+11101
+11001
+10N01
 10001
-11011
+10001
 11111

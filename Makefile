@@ -22,6 +22,7 @@ srcs/draw/draw_view.c \
 srcs/draw/draw_minimap.c \
 srcs/draw/draw_pixel.c \
 srcs/draw/minidraw_cell.c \
+srcs/draw/draw_column.c \
 srcs/grid/get_grid_pos.c \
 srcs/grid/make_grid_pos.c \
 srcs/grid/utils.c \
@@ -47,6 +48,7 @@ srcs/utils.c \
 srcs/utils/malloc.c \
 srcs/vector/calc.c \
 srcs/vector/calc_assign.c \
+srcs/vector/rotate.c \
 srcs/vector/length.c \
 srcs/vector/make.c \
 srcs/vector/normalize.c \

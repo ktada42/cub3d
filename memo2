@@ -1,0 +1,15 @@
+
+hit_pos{x : 35.346797, y : 10.000000}
+player{x : 25.000000, y : 38.500000}
+to_cell{x : 220.500000, y : -500.000000}
+ray_ang 1.222547to_ray_hit{x : 10.346797, y : -28.500000}
+w 720, mag 0.055484, tex no :hit_pos{x : 35.346797, y : 10.000000}
+ray_hit_horizontal:
+ray_rad : 1.190130
+first delta {x : 3.401578, y : -8.500000}
+delta{x : 4.001857, y : -10.000000}
+last cur {x : 36.405292, y : 10.000000}
+ray_hit_vertical:
+first_delta{x : 5.000000, y : -12.494200}
+delta{x : 10.000000, y : -24.988399}
+last cur {x : 40.000000, y : 1.017401}

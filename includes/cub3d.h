@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 21:33:25 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/15 14:46:57 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/16 17:26:27 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 # define MAP_WIDTH 480
 # define MAP_HEIGHT 360
 //todo
-# define FOV_DEG 60
+# define FOV_DEG 90
 # define PLANE_CELL_SIZE 1
 # define WALL_SIZE 10
 # define MINIMAP_WALL_SIZE 10
@@ -47,8 +47,8 @@
 # define MAP_MAX_WIDTH 80
 
 //rate
-# define MOVE_RATE 0.1
-# define TURN_RATE 0.015
+# define MOVE_RATE 0.4
+# define TURN_RATE 0.03
 # define UPDATE_INTERVAL 1
 
 # define ON_KEYDOWN 2
@@ -101,11 +101,12 @@ typedef struct s_img_data {
 
 typedef struct s_ray_hit{
 	void		*wall_texture;
-	char		*wall_texture_name;
+	char		*wall_dir;//debug用
 	t_vector	*hit_pos;
 }	t_ray_hit;
 
 typedef struct s_state {
+	bool		debug_ray_hit;//todo 消す
 	void		*mlx;
 	void		*win;
 	t_color		*floor_color;
@@ -181,6 +182,8 @@ void		minidraw_player(t_state *state, size_t h, size_t w);
 void		minidraw_cell(t_state *state, size_t h, size_t w);
 void		minidraw_floor(t_state *state, size_t h, size_t w);
 void		minidraw_wall(t_state *state, size_t h, size_t w);
+void		draw_column(t_state *state, \
+			t_ray_hit *ray_hit, size_t w, double magnification);
 
 //grid
 t_grid_pos	*make_grid_pos(int h, int w);
@@ -283,6 +286,7 @@ void		scalar_mul_assign(t_vector *lhs, double r);
 void		scalar_div_assign(t_vector *lhs, double r);
 
 t_vector	*rotate(t_vector *vec, double rad);
+void		set_rotate(t_vector *vec, double rad);
 t_vector	*make_vector(double x, double y);
 void		copy_vector(t_vector *dst, t_vector *src);
 double		length(t_vector	*vec);
