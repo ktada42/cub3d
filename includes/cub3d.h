@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 21:33:25 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/17 16:48:32 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/17 17:14:51 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <fcntl.h>
 # include <math.h>
 # include <unistd.h>
+# include <time.h>
 
 # define DEBUG 1
 # define DEBUG_KEY 1
@@ -199,7 +200,7 @@ bool		inside_grid(t_grid_pos *grid_pos);
 
 //image
 void		load_textures(t_state *state);
-t_color		*get_pixel_color(t_img_data *img, int x, int y);
+int			get_pixel_color(t_img_data *img, int x, int y);
 
 //get_coordinate
 t_vector	*cell_top_left(size_t h, size_t w);

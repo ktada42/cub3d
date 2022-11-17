@@ -1,15 +1,8 @@
+現状 100
+time sum 930417, 3888185, 8747
 
-hit_pos{x : 11.001393, y : 10.000000}
-player{x : 25.000000, y : 38.500000}
-to_cell{x : -239.500000, y : -500.000000}
-ray_ang 2.027362to_ray_hit{x : -13.998607, y : -28.500000}
-w 260, mag 0.057273, tex no :hit_pos{x : 11.001393, y : 10.000000}
-ray_hit_horizontal:
-ray_rad : 1.997004
-first delta {x : -3.859331, y : -8.500000}
-delta{x : -4.540390, y : -10.000000}
-last cur {x : 12.059889, y : 10.000000}
-ray_hit_vertical:
-first_delta{x : -5.000000, y : -11.012270}
-delta{x : -10.000000, y : -22.024540}
-last cur {x : 10.000000, y : 5.463190}
+Draw column なし
+time sum 966901, 319300, 8767
+
+
+time sum 916455, 6450917, 8796

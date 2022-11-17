@@ -6,13 +6,13 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 14:53:04 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/17 16:51:59 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/17 17:17:01 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-static t_color	*get_wall_hit_pixcel(t_ray_hit *ray_hit, \
+static int	get_wall_hit_pixcel(t_ray_hit *ray_hit, \
 					size_t h, double magnification)
 {
 	double	wall_hit_y;
@@ -20,6 +20,9 @@ static t_color	*get_wall_hit_pixcel(t_ray_hit *ray_hit, \
 	int		texture_hit_x;
 	int		texture_hit_y;
 
+	(void)h;
+	(void)ray_hit;
+	(void)magnification;
 	height_center = HEIGHT / 2.0;
 	if (h < height_center)
 		wall_hit_y = (WALL_SIZE / 2.0) - (PLANE_CELL_SIZE * magnification) \
@@ -39,16 +42,19 @@ void	draw_column(t_state *state, t_ray_hit *ray_hit, \
 					size_t w, double magnification)
 {
 	size_t	h;
-	t_color	*col;
+	int		col;
 
 	h = 0;
 	while (h < HEIGHT)
 	{
+		(void)(ray_hit);
+		(void)(w);
+		(void)(magnification);
+		(void)(state);
 		col = get_wall_hit_pixcel(ray_hit, h, magnification);
-		if (col != NULL)
+		if (col != -1)
 		{
-			draw_pixel_color(&state->img, w, h, col);
-			free(col);
+			draw_pixel_i(&state->img, w, h, col);
 		}
 		h++;
 	}
