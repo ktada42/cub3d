@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 18:43:07 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/16 18:50:42 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/17 16:19:30 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,29 @@ static void	erase_noise(t_state *state)
 	}
 }
 
+static void	set_hit_wall_pos(t_state *state)
+{
+	size_t		w;
+	t_ray_hit	*ray_hit;
+
+	w = 0;
+	while (w < WIDTH)
+	{
+		ray_hit = state->ray_hits[w];
+		if (ray_hit->wall_texture == &state->no_wall_texture)
+			ray_hit->hit_pos_of_wall = fmod(ray_hit->hit_pos->x, WALL_SIZE);
+		else if (ray_hit->wall_texture == &state->ea_wall_texture)
+			ray_hit->hit_pos_of_wall = fmod(ray_hit->hit_pos->y, WALL_SIZE);
+		else if (ray_hit->wall_texture == &state->so_wall_texture)
+			ray_hit->hit_pos_of_wall = fmod(WALL_SIZE - \
+				fmod(ray_hit->hit_pos->x, WALL_SIZE), WALL_SIZE);
+		else if (ray_hit->wall_texture == &state->we_wall_texture)
+			ray_hit->hit_pos_of_wall = fmod(WALL_SIZE - \
+				fmod(ray_hit->hit_pos->y, WALL_SIZE), WALL_SIZE);
+		w++;
+	}
+}
+
 void	set_ray_hits(t_state *state)
 {
 	size_t		w;
@@ -72,4 +95,5 @@ void	set_ray_hits(t_state *state)
 		w++;
 	}
 	erase_noise(state);
+	set_hit_wall_pos(state);
 }

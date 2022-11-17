@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 21:33:25 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/16 22:17:11 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/17 16:48:32 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ typedef struct s_img_data {
 typedef struct s_ray_hit{
 	t_img_data	*wall_texture;
 	t_vector	*hit_pos;
+	double		hit_pos_of_wall;
 }	t_ray_hit;
 
 typedef struct s_state {
@@ -190,7 +191,6 @@ t_vector	*get_to_column(t_state *state, size_t w);
 double		calc_magnification(t_vector *to_cell, t_vector *ray_hit_pos);
 void		set_ray_hits(t_state *state);
 
-
 //grid
 t_grid_pos	*make_grid_pos(int h, int w);
 t_grid_pos	*get_grid_pos1(t_vector *pos);
@@ -199,7 +199,7 @@ bool		inside_grid(t_grid_pos *grid_pos);
 
 //image
 void		load_textures(t_state *state);
-size_t		get_pixel_color(t_img_data *img, int x, int y);
+t_color		*get_pixel_color(t_img_data *img, int x, int y);
 
 //get_coordinate
 t_vector	*cell_top_left(size_t h, size_t w);

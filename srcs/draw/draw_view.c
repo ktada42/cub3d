@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 21:45:34 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/16 22:24:54 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/17 16:54:08 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,19 +59,5 @@ void	draw_view(t_state *state)
 	draw_floor_ceil(state);
 	draw_raycasting_map(state);
 	draw_minimap(state);
-	size_t	x = 0;
-	printf("image height %d, width %d\n", state->no_wall_texture.height, state->no_wall_texture.width);
-	while ( x < (size_t)state->no_wall_texture.height)
-	{
-		size_t	y = 0;
-		while (y < (size_t)state->no_wall_texture.width)
-		{
-			draw_pixel_i(&(state->img), x, y, get_pixel_color(&state->so_wall_texture, x, y));
-			//draw_pixel_i(&(state->img), x, y, 0x00FF0000);
-			
-			y++;
-		}
-		x++;
-	}
 	mlx_put_image_to_window(state->mlx, state->win, state->img.img, 0, 0);
 }

@@ -6,46 +6,50 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 14:53:04 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/16 19:30:43 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/17 16:51:59 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	draw_column(t_state *state, t_ray_hit *ray_hit, size_t w, double magnification)
+static t_color	*get_wall_hit_pixcel(t_ray_hit *ray_hit, \
+					size_t h, double magnification)
 {
-	size_t	viewer_wall_height;
+	double	wall_hit_y;
+	double	height_center;
+	int		texture_hit_x;
+	int		texture_hit_y;
+
+	height_center = HEIGHT / 2.0;
+	if (h < height_center)
+		wall_hit_y = (WALL_SIZE / 2.0) - (PLANE_CELL_SIZE * magnification) \
+					* (height_center - h - 0.5f);
+	else
+		wall_hit_y = (WALL_SIZE / 2.0) + (PLANE_CELL_SIZE * magnification) \
+					* (h - height_center + 0.5f);
+	texture_hit_x = (int)((double)ray_hit->hit_pos_of_wall / \
+					WALL_SIZE * ray_hit->wall_texture->width);
+	texture_hit_y = (int)((double)wall_hit_y / \
+					WALL_SIZE * ray_hit->wall_texture->height);
+	return (get_pixel_color(\
+			ray_hit->wall_texture, texture_hit_x, texture_hit_y));
+}
+
+void	draw_column(t_state *state, t_ray_hit *ray_hit, \
+					size_t w, double magnification)
+{
 	size_t	h;
 	t_color	*col;
 
-	viewer_wall_height = (WALL_SIZE / magnification);
-	(void)w;
-	(void)state;
-	(void)ray_hit;
-	(void)col;
 	h = 0;
 	while (h < HEIGHT)
 	{
-		
+		col = get_wall_hit_pixcel(ray_hit, h, magnification);
+		if (col != NULL)
+		{
+			draw_pixel_color(&state->img, w, h, col);
+			free(col);
+		}
 		h++;
 	}
-	/*if (ray_hit->wall_dir[0] == 'n')
-			col = make_color(255, 0, 0);
-		else if (ray_hit->wall_dir[0] == 'e')
-			col = make_color(0, 255, 0);
-		else if (ray_hit->wall_dir[0] == 's')
-			col = make_color(0, 0, 255);
-		else if (ray_hit->wall_dir[0] == 'w')
-			col = make_color(0, 255, 255);
-		else
-			exit_print("color error");
-	*/
-	if (viewer_wall_height > HEIGHT)
-		viewer_wall_height = HEIGHT;
-	while (h < viewer_wall_height)
-	{
-		//draw_pixel_color(&state->img, w, (size_t)(HEIGHT / 2 - (viewer_wall_height / 2.0) + h), col);
-		h++;
-	}
-	//free(col);
 }
