@@ -12,24 +12,24 @@
 
 #include "../../includes/cub3d.h"
 
-static void	setup_color(t_color	**color, char **file_text, size_t f)
+static void	setup_color(int	*color, char **file_text, size_t f)
 {
 	char	**splited;
 	int		splited_cnt;
 
-	if (*color)
-		exit_print("color setting duplicate\n");
 	splited = ft_split(file_text[f], ' ', &splited_cnt);
 	if (splited_cnt != 2)
 		exit_print("color setting arg invalid\n");
 	*color = str_to_color(splited[1]);
-	if (!(*color))
+	if ((*color) == -1)
 		exit_print("color setting color code invalid\n");
 	free_2d_char_array(splited);
 }
 
 size_t	setup_floor_color(t_state *state, char **file_text, size_t f)
 {
+	if (already_set_floor(state))
+		exit_print("floor setting duplicate\n");
 	deb("setup_floor_color");
 	setup_color(&state->floor_color, file_text, f);
 	return (f + 1);
@@ -37,6 +37,8 @@ size_t	setup_floor_color(t_state *state, char **file_text, size_t f)
 
 size_t	setup_ceil_color(t_state *state, char **file_text, size_t f)
 {
+	if (already_set_ceil(state))
+		exit_print("ceil setting duplicate\n");
 	deb("setup_ceil_color");
 	setup_color(&state->ceil_color, file_text, f);
 	return (f + 1);

@@ -6,20 +6,11 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 17:37:30 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/14 23:06:58 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/17 18:01:45 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-
-void	print_color(char *mes, t_color	*color)
-{
-	printf("%s", mes);
-	printf(" : ");
-	printf("r %d, ", color->r);
-	printf("g %d, ", color->g);
-	printf("b %d, \n", color->b);
-}
 
 void	print_vector(char *mes, t_vector *vec)
 {
@@ -31,8 +22,6 @@ void	print_vector(char *mes, t_vector *vec)
 
 void	print_state(t_state *state)
 {
-	print_color("floor color", state->floor_color);
-	print_color("ceil color", state->ceil_color);
 	printf("path_ea_texture : %s\n", state->path_ea_texture);
 	printf("path_no_texture : %s\n", state->path_no_texture);
 	printf("path_so_texture : %s\n", state->path_so_texture);

@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 21:20:39 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/17 16:58:15 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/17 18:39:32 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	update_frame(t_state	*state)
 	if (++state->cur_frame % UPDATE_INTERVAL)
 		return (0);
 	apply_turn(state);
-	try_apply_move(state);
+	apply_move(state);
 	draw_view(state);
 	return (0);
 }
@@ -41,9 +41,8 @@ int	main(int argc, char **argv)
 	mlx_loop(state.mlx);
 	return (0);
 }
-/*
+
 __attribute__((destructor)) static void destructor()
 {
 	system("leaks -q cub3d");
 }
-*/

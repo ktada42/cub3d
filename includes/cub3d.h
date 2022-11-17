@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 21:33:25 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/17 17:14:51 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/17 18:22:02 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 # include <unistd.h>
 # include <time.h>
 
-# define DEBUG 1
-# define DEBUG_KEY 1
+# define DEBUG 0
+# define DEBUG_KEY 0
 # define EPS_POS 0.0001f
 # define EPS_THETA 0.000001f
 
@@ -112,8 +112,8 @@ typedef struct s_state {
 //	bool		debug_ray_hit;//todo 消す
 	void		*mlx;
 	void		*win;
-	t_color		*floor_color;
-	t_color		*ceil_color;
+	int			floor_color;
+	int			ceil_color;
 	char		*path_no_texture;
 	char		*path_ea_texture;
 	char		*path_so_texture;
@@ -140,17 +140,23 @@ typedef struct s_state {
 }	t_state;
 
 //action
-void		try_apply_move(t_state	*state);
+void		apply_move(t_state	*state);
 void		apply_turn(t_state	*state);
 
 //color
-t_color		*str_to_color(char *str);
-t_color		*make_color(int r, int g, int b);
-int			col_to_i(t_color *col);
 int			make_color_i(int r, int g, int b);
-t_color		*i_to_col(int color_int);
+int			str_to_color(char *str);
 
 //config
+bool		already_set_map(t_state *state);
+bool		already_set_floor(t_state *state);
+bool		already_set_ceil(t_state *state);
+bool		already_set_color(t_state *state);
+bool		already_set_no(t_state *state);
+bool		already_set_ea(t_state *state);
+bool		already_set_so(t_state *state);
+bool		already_set_we(t_state *state);
+bool		already_set_textures(t_state *state);
 bool		is_texture_config(t_state *state, \
 				char **file_text, size_t i, size_t j);
 void		parse_texture(t_state *state, char **file_text, size_t i, size_t j);
@@ -179,7 +185,6 @@ void		deb(char *s);
 
 //draw
 void		draw_pixel_i(t_img_data *data, int x, int y, int color);
-void		draw_pixel_color(t_img_data *data, int x, int y, t_color *color);
 void		draw_view(t_state *state);
 void		draw_minimap(t_state *state);
 void		minidraw_player(t_state *state, size_t h, size_t w);
@@ -225,6 +230,7 @@ char		**make_2d_char_array(int h, int w);
 //map
 bool		has_wall_at_strict(t_state *state, double x, double y);
 bool		has_wall_at_near(t_state *state, t_vector *pos);
+bool		has_wall_at_near2(t_state *state, double x, double y);
 bool		is_too_big_map(char **file_text, size_t f, size_t t);
 void		check_arg(int argc, char **argv);
 void		check_valid_map(char **file_text, size_t f, size_t t);

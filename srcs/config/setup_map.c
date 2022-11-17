@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 17:50:34 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/16 21:57:23 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/17 17:56:51 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,12 @@
 
 static void	check_last_config(t_state *state)
 {
-	if (!state->path_no_texture \
-		|| !state->path_ea_texture \
-		|| !state->path_so_texture \
-		|| !state->path_we_texture \
-		|| !state->floor_color \
-		|| !state->ceil_color \
-		|| state->builded_map \
-		)
-		exit_print("map config must placed last\n");
+	if (!already_set_textures(state))
+		exit_print("texture must setting before map\n");
+	if (!already_set_color(state))
+		exit_print("floor and ceil color must setting before map\n");
+	if (already_set_map(state))
+		exit_print("map setting duplicate\n");
 }
 
 static void	set_start_position(t_state *state, \

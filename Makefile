@@ -3,10 +3,13 @@ NAME = cub3d
 CC = gcc
 
 SRCS =  \
-srcs/action/try_move.c \
-srcs/action/turn.c \
-srcs/color/convert.c \
+srcs/action/apply_move.c \
+srcs/action/apply_turn.c \
 srcs/color/make.c \
+srcs/config/already_set_map.c \
+srcs/config/already_set_texture.c \
+srcs/config/already_set_textures.c \
+srcs/config/aready_set_color.c \
 srcs/config/check_valid_map.c \
 srcs/config/check_valid_map_utils.c \
 srcs/config/is_color_config.c \

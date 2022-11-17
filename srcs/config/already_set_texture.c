@@ -1,21 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_pixel.c                                       :+:      :+:    :+:   */
+/*   already_set_texture.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/11 21:45:34 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/17 17:25:42 by ktada            ###   ########.fr       */
+/*   Created: 2022/11/17 17:42:14 by ktada             #+#    #+#             */
+/*   Updated: 2022/11/17 17:50:11 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	draw_pixel_i(t_img_data *data, int x, int y, int color)
+bool	already_set_no(t_state *state)
 {
-	char	*dst;
+	return (state->path_no_texture);
+}
 
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
+bool	already_set_ea(t_state *state)
+{
+	return (state->path_ea_texture);
+}
+
+bool	already_set_so(t_state *state)
+{
+	return (state->path_so_texture);
+}
+
+bool	already_set_we(t_state *state)
+{
+	return (state->path_we_texture);
 }

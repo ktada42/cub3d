@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 21:20:39 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/16 21:24:07 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/17 18:01:39 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ static void	init_press_keys(t_state *state)
 
 static void	set_null_ptr(t_state *state)
 {
-	state->floor_color = NULL;
-	state->ceil_color = NULL;
+	state->floor_color = -1;
+	state->ceil_color = -1;
 	state->path_no_texture = NULL;
 	state->path_ea_texture = NULL;
 	state->path_so_texture = NULL;
@@ -40,7 +40,8 @@ void	init_state(t_state *state, int argc, char **argv)
 	state->builded_map = false;
 	state->cur_frame = 0;
 	setup_config(state, argc, argv);
-	print_state(state);
+	if (DEBUG)
+		print_state(state);
 	state->mlx = mlx_init();
 	state->win = mlx_new_window(state->mlx, WIDTH, HEIGHT, "cub3d");
 	state->img.img = mlx_new_image(state->mlx, WIDTH, HEIGHT);

@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:56:13 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/15 13:45:35 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/17 18:21:48 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,21 @@ bool	has_wall_at_strict(t_state *state, double x, double y)
 }
 
 //if out side map, it's return true
-bool	has_wall_at_near(t_state *state, t_vector *pos)
+bool	has_wall_at_near2(t_state *state, double x, double y)
 {
-	if (pos->x < 0 || pos->y < 0)
+	if (x < 0 || y < 0)
 		return (true);
 	return (\
-		has_wall_at_strict(state, pos->x - EPS_POS, pos->y - EPS_POS) || \
-		has_wall_at_strict(state, pos->x - EPS_POS, pos->y + EPS_POS) || \
-		has_wall_at_strict(state, pos->x + EPS_POS, pos->y - EPS_POS) || \
-		has_wall_at_strict(state, pos->x + EPS_POS, pos->y + EPS_POS) \
+		has_wall_at_strict(state, x - EPS_POS, y - EPS_POS) || \
+		has_wall_at_strict(state, x - EPS_POS, y + EPS_POS) || \
+		has_wall_at_strict(state, x + EPS_POS, y - EPS_POS) || \
+		has_wall_at_strict(state, x + EPS_POS, y + EPS_POS) \
 	);
+}
+
+bool	has_wall_at_near(t_state *state, t_vector *pos)
+{
+	return (has_wall_at_near2(state, pos->x, pos->y));
 }
 
 bool	inside_map(t_state *state, t_vector *pos)

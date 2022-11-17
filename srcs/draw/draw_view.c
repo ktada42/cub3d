@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 21:45:34 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/17 17:04:26 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/17 18:00:26 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ static void	draw_floor_ceil(t_state *state)
 		while (y < HEIGHT)
 		{
 			if (y * 2 <= HEIGHT)
-				draw_pixel_color(&state->img, x, y, state->ceil_color);
+				draw_pixel_i(&state->img, x, y, state->ceil_color);
 			else
-				draw_pixel_color(&state->img, x, y, state->floor_color);
+				draw_pixel_i(&state->img, x, y, state->floor_color);
 			y++;
 		}
 		x++;
@@ -54,24 +54,10 @@ static void	draw_raycasting_map(t_state *state)
 	}
 }
 
-long	i1, i2, i3;
-int cou = 0;
 void	draw_view(t_state *state)
 {
-	long	t1 = clock();
 	draw_floor_ceil(state);
-	long	t2 = clock();
 	draw_raycasting_map(state);
-	long	t3 = clock();
 	draw_minimap(state);
-	long	t4 = clock();
-	i1 += t2 - t1;
-	i2 += t3 - t2;
-	i3 += t4 - t3;
-	cou++;
-	if (cou > 100)
-	{printf("time sum %ld, %ld, %ld\n", i1, i2, i3);
-	exit(1);
-	}
 	mlx_put_image_to_window(state->mlx, state->win, state->img.img, 0, 0);
 }

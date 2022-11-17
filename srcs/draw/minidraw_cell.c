@@ -6,14 +6,14 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 01:11:55 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/16 17:45:48 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/17 17:22:31 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
 static void	minidraw_square(\
-	t_state *state, size_t h, size_t w, t_color *col)
+	t_state *state, size_t h, size_t w, int col)
 {
 	size_t	x;
 	size_t	y;
@@ -30,7 +30,7 @@ static void	minidraw_square(\
 		while (y < MINIMAP_WALL_SIZE)
 		{
 			draw_pixel_i(&state->img, left_x + x, top_y + y, \
-							col_to_i(col) | 0xFF000000);
+							col | 0xFF000000);
 			y++;
 		}
 		x++;
@@ -39,27 +39,15 @@ static void	minidraw_square(\
 
 void	minidraw_floor(t_state *state, size_t h, size_t w)
 {
-	t_color		*col;
-
-	col = make_color(255, 255, 255);
-	minidraw_square(state, h, w, col);
-	free(col);
+	minidraw_square(state, h, w, make_color_i(255, 255, 255));
 }
 
 void	minidraw_wall(t_state *state, size_t h, size_t w)
 {
-	t_color		*col;
-
-	col = make_color(0, 0, 0);
-	minidraw_square(state, h, w, col);
-	free(col);
+	minidraw_square(state, h, w, make_color_i(0, 0, 0));
 }
 
 void	minidraw_player(t_state *state, size_t h, size_t w)
 {
-	t_color		*col;
-
-	col = make_color(255, 0, 0);
-	minidraw_square(state, h, w, col);
-	free(col);
+	minidraw_square(state, h, w, make_color_i(255, 0, 0));
 }

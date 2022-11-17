@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   try_move.c                                         :+:      :+:    :+:   */
+/*   apply_move.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:42:51 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/16 17:25:32 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/17 18:38:59 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-static t_vector	*get_moved_pos2(t_state *state, \
+static t_vector	*get_move_diff(t_state *state, \
 		double move_horizontal, double move_vertical)
 {
 	t_vector	*x_vec;
 	t_vector	*y_vec;
-	t_vector	*moved_pos;
+	t_vector	*move_diff;
 
 	x_vec = make_vector(0, -1);
 	y_vec = make_vector(1, 0);
@@ -25,16 +25,15 @@ static t_vector	*get_moved_pos2(t_state *state, \
 	set_rotate(y_vec, state->player_angle);
 	scalar_mul_assign(x_vec, move_horizontal);
 	scalar_mul_assign(y_vec, -move_vertical);
-	moved_pos = add(x_vec, y_vec);
-	moved_pos->y *= -1;
-	add_assign(moved_pos, state->player_pos);
+	move_diff = add(x_vec, y_vec);
+	move_diff->y *= -1;
 	free(x_vec);
 	free(y_vec);
-	return (moved_pos);
+	return (move_diff);
 }
 
 //todo
-static t_vector	*get_moved_pos(t_state *state)
+static t_vector	*get_ideal_move_diff(t_state *state)
 {
 	double	move_horizontal;
 	double	move_vertical;
@@ -49,15 +48,43 @@ static t_vector	*get_moved_pos(t_state *state)
 		move_horizontal += MOVE_RATE;
 	if (state->press_key_down)
 		move_vertical += MOVE_RATE;
-	return (get_moved_pos2(state, move_horizontal, move_vertical));
+	return (get_move_diff(state, move_horizontal, move_vertical));
 }
 
-void	try_apply_move(t_state	*state)
+static bool	try_move_add2(t_state *state, double x, double y)
 {
-	t_vector	*moved_pos;
+	x += state->player_pos->x;
+	y += state->player_pos->y;
+	if (has_wall_at_near2(state, x, y))
+		return (false);
+	state->player_pos->x = x;
+	state->player_pos->y = y;
+	return (true);
+}
 
-	moved_pos = get_moved_pos(state);
-	if (!has_wall_at_near(state, moved_pos))
-		copy_vector(state->player_pos, moved_pos);
-	free(moved_pos);
+static bool	try_move_add(t_state *state, t_vector *diff)
+{
+	return (try_move_add2(state, diff->x, diff->y));
+}
+
+void	apply_move(t_state	*state)
+{
+	t_vector	*ideal_move_diff;
+
+	ideal_move_diff = get_ideal_move_diff(state);
+	if (try_move_add(state, ideal_move_diff))
+	{
+		free(ideal_move_diff);
+		return ;
+	}
+	if (try_move_add2(state, ideal_move_diff->x, 0))
+	{
+		free(ideal_move_diff);
+		return ;
+	}
+	if (try_move_add2(state, 0, ideal_move_diff->y))
+	{
+		free(ideal_move_diff);
+		return ;
+	}
 }
