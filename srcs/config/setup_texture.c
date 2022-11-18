@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup_texture.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kkohki <kkohki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 17:50:34 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/17 17:36:02 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/18 21:37:07 by kkohki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,7 @@ static void	setup_texture(char **path_ptr, char **file_text, size_t f)
 	int		splited_cnt;
 
 	if (*path_ptr)
-	{
-		//printf("line:%zu path == %s\n", f, *path_ptr);
 		exit_print("duplicate texture setting\n");
-	}
 	splited = ft_split(file_text[f], ' ', &splited_cnt);
 	if (splited_cnt != 2)
 		exit_print("text setting arg invalid\n");

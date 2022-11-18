@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kkohki <kkohki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 21:20:39 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/17 20:08:16 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/18 22:47:04 by kkohki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,7 @@ int	main(int argc, char **argv)
 	return (0);
 }
 
-/*
-__attribute__((destructor)) static void destructor()
-{
-	system("leaks -q cub3d");
-}*/
+// __attribute__((destructor)) static void destructor()
+// {
+// 	system("leaks -q cub3d");
+// }
