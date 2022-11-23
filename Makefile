@@ -31,11 +31,11 @@ srcs/grid/get_grid_pos.c \
 srcs/grid/make_grid_pos.c \
 srcs/grid/utils.c \
 srcs/image/load_texture.c \
-srcs/init_state.c \
+srcs/main/init_state.c \
 srcs/key/is_move_key.c \
 srcs/key/is_turn_key.c \
 srcs/key/key_handler.c \
-srcs/main.c \
+srcs/main/main.c \
 srcs/map/get_coordinate.c \
 srcs/map/has_wall_at.c \
 srcs/math/theta.c \
@@ -48,7 +48,7 @@ srcs/ray/ray_dir.c \
 srcs/ray/ray_hit_utils.c \
 srcs/string/str_cnt.c \
 srcs/string/utils.c \
-srcs/utils.c \
+srcs/utils/utils.c \
 srcs/utils/malloc.c \
 srcs/vector/calc.c \
 srcs/vector/calc_assign.c \
