@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:56:13 by ktada             #+#    #+#             */
-/*   Updated: 2022/11/17 18:21:48 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/23 16:24:01 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ bool	has_wall_at_strict(t_state *state, double x, double y)
 		return (true);
 	pos = get_grid_pos2(x, y);
 	if (!inside_grid(pos))
+	{
+		free(pos);
 		return (true);
+	}
 	res = (state->map[pos->h][pos->w] == '1');
 	free(pos);
 	return (res);

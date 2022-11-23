@@ -92,10 +92,17 @@ bonus : $(NAME)
 
 ok1:
 	./cub3d test_files/ok_map/simple_map.cub
+
+ok2:
+	./cub3d test_files/ok_map/not_square_map.cub
+
 norm:
 	norminette srcs/
 	norminette includes/
-	
+
+valgrind:
+	valgrind --leak-check=full --leak-resolution=high --log-file=./error.txt ./cub3d ./test_files/ok_map/example.cub
+
 re: fclean all
 
-.PHONY: all clean fclean re bonus norm ok1
+.PHONY: all clean fclean re bonus norm ok1 ok2 valgrind
