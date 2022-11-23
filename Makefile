@@ -2,7 +2,7 @@ NAME = cub3d
 
 CC = gcc
 
-SRCS =  \
+SRCS = \
 srcs/action/apply_move.c \
 srcs/action/apply_turn.c \
 srcs/color/make.c \
@@ -62,6 +62,7 @@ OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:%.c=%.o))
 MLX_DIR = mlx
 LIB = ./includes/library/library.a
 LIB_DIR = ./includes/library
+RM_DIR = rm -rf
 
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(OBJ_DIR)
@@ -72,18 +73,18 @@ $(NAME): $(OBJS)
 	clear
 	@$(MAKE) -C $(LIB_DIR)
 	@$(MAKE) -C $(MLX_DIR) 2> /dev/null
-	@$(CC) $(OBJS) $(LIB) -Lmlx -L/usr/X11R6/lib  -lmlx -lX11 -lXext -framework OpenGL -framework AppKit -o $(NAME)
+	@$(CC) $(OBJS) $(LIB) -Lmlx -L/usr/X11R6/lib -lmlx -lX11 -lXext -framework OpenGL -framework AppKit -o $(NAME)
 
 clean:
 	$(MAKE) clean -C $(LIB_DIR)
 	$(MAKE) clean -C $(MLX_DIR)
-	$(RM) $(OBJS)
-
+	$(RM_DIR) $(OBJ_DIR)
+	
 fclean:
 	$(MAKE) fclean -C $(LIB_DIR)
 	$(MAKE) clean -C $(MLX_DIR)
 	$(RM) $(NAME)
-	$(RM) $(OBJS)
+	$(RM_DIR) $(OBJ_DIR)
 
 all : $(NAME)
 
