@@ -57,12 +57,15 @@ srcs/vector/make.c \
 srcs/vector/normalize.c \
 srcs/vector/rotate.c \
 
-OBJS = $(SRCS:%.c=%.o)
+OBJ_DIR = ./obj
+OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:%.c=%.o))
 MLX_DIR = mlx
 LIB = ./includes/library/library.a
 LIB_DIR = ./includes/library
 
-%.o: %.c
+$(OBJ_DIR)/%.o: %.c
+	@mkdir -p $(OBJ_DIR)
+	@mkdir -p $(dir $@);
 	@$(CC) -g -Wall -Wextra -Werror -Imlx -c $< -o $@
 
 $(NAME): $(OBJS)
