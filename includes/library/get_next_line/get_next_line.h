@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kkohki <kkohki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 21:54:34 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/11 01:48:32 by ktada            ###   ########.fr       */
+/*   Updated: 2022/11/23 15:38:31 by kkohki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ typedef struct s_file_state_gnl
 	bool	error;
 	bool	exist_lf;
 }	t_state_gnl;
-
 
 void	*my_malloc_gnl(size_t type_size, size_t count);
 size_t	ft_strlen_gnl(const char *str);

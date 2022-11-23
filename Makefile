@@ -88,6 +88,9 @@ bonus : $(NAME)
 
 ok1:
 	./cub3d test_files/ok_map/simple_map.cub
+norm:
+	norminette srcs/
+	norminette includes/
 	
 re: fclean all
 
