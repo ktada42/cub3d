@@ -6,7 +6,7 @@
 /*   By: ktada <ktada@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 17:37:30 by kaou              #+#    #+#             */
-/*   Updated: 2022/11/17 17:14:43 by ktada            ###   ########.fr       */
+/*   Updated: 2023/01/10 20:47:25 by ktada            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	load_textures(t_state *state)
 
 int	get_pixel_color(t_img_data *img, int x, int y)
 {
-	if (!(0 <= x && x < img->width && 0 <= y && y <= img->height))
+	if (!(0 <= x && x < img->width && 0 <= y && y < img->height))
 		return (-1);
 	return (*(unsigned int *)(img->addr + \
 			(y * img->line_length + x * (img->bits_per_pixel / 8))));
